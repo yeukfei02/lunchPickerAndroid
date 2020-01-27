@@ -16,7 +16,7 @@ import com.donaldwu.lunchpickerandroid.R
 class SettingsFragment : Fragment() {
 
     private lateinit var settingsViewModel: SettingsViewModel
-    private var languageList: ArrayList<String> = arrayListOf("English", "Chinese")
+    private val languageList: ArrayList<String> = arrayListOf("English", "Chinese")
 
     override fun onCreateView(
         inflater: LayoutInflater,
