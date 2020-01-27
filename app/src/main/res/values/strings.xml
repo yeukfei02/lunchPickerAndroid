@@ -25,5 +25,12 @@
     <string name="change_language">Change language</string>
 
     <!-- Contact us -->
-
+    <string name="contact_us">Contact us via email or visit our github repo</string>
+    <string name="email_logo">Email logo</string>
+    <string name="github_logo">Github logo</string>
+    <string name="donate">Donate for lunch picker better features and development</string>
+    <string name="donorbox">Donorbox</string>
+    <string name="stripe">Stripe</string>
+    <string name="donate_button">Donate</string>
+    <string name="pay_now_button">Pay now</string>
 </resources>
