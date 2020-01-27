@@ -1,4 +1,4 @@
-package com.example.lunchpickerandroid.ui.gallery
+package com.example.lunchpickerandroid.ui.favourites
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.lunchpickerandroid.R
 
-class GalleryFragment : Fragment() {
+class FavouritesFragment : Fragment() {
 
-    private lateinit var galleryViewModel: GalleryViewModel
+    private lateinit var favouritesViewModel: FavouritesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        galleryViewModel =
-            ViewModelProviders.of(this).get(GalleryViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_gallery, container, false)
-        val textView: TextView = root.findViewById(R.id.text_gallery)
-        galleryViewModel.text.observe(this, Observer {
+        favouritesViewModel =
+            ViewModelProviders.of(this).get(FavouritesViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_favourites, container, false)
+        val textView: TextView = root.findViewById(R.id.text_slideshow)
+        favouritesViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root
