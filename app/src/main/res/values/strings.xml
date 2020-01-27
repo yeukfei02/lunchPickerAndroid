@@ -15,6 +15,11 @@
 
     <!-- Home -->
     <string name="logo">Logo</string>
+    <string name="place">Place</string>
+    <string name="current_location">Current Location</string>
+    <string name="enter_location">Enter location&#8230;</string>
+    <string name="submit">Submit</string>
+    <string name="clear">Clear</string>
 
     <!-- Random food -->
 

@@ -3,6 +3,7 @@ package com.donaldwu.lunchpickerandroid
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.StrictMode
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -27,6 +28,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setNetworkOnMainThread()
+
         setToolBar()
 
         handleFloatingActionButton()
@@ -34,6 +37,11 @@ class MainActivity : AppCompatActivity() {
         setNavigationDrawer()
 
         handleUrlClick()
+    }
+
+    private fun setNetworkOnMainThread() {
+        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(policy)
     }
 
     private fun setToolBar() {
