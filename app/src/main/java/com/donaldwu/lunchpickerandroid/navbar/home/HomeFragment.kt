@@ -22,10 +22,10 @@ class HomeFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         homeViewModel =  ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(this, Observer {
-            textView.text = it
-        })
+//        val textView: TextView = root.findViewById(R.id.text_home)
+//        homeViewModel.text.observe(this, Observer {
+//            textView.text = it
+//        })
 
         return root
     }

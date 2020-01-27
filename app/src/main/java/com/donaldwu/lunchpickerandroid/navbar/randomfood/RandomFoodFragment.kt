@@ -22,10 +22,10 @@ class RandomFoodFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_random_food, container, false)
 
         randomFoodViewModel = ViewModelProviders.of(this).get(RandomFoodViewModel::class.java)
-        val textView: TextView = root.findViewById(R.id.text_random_food)
-        randomFoodViewModel.text.observe(this, Observer {
-            textView.text = it
-        })
+//        val textView: TextView = root.findViewById(R.id.text_random_food)
+//        randomFoodViewModel.text.observe(this, Observer {
+//            textView.text = it
+//        })
 
         return root
     }
