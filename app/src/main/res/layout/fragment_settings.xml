@@ -51,6 +51,7 @@
                         android:text="@string/subscribe_message"
                         android:textSize="16sp"
                         android:textColor="@android:color/black"
+                        android:layout_marginStart="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
