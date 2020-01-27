@@ -7,20 +7,24 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/home"
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_random_food"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/random_food"
             android:title="@string/menu_random_food" />
         <item
             android:id="@+id/nav_favourites"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/favorites"
             android:title="@string/menu_favourites" />
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/settings"
             android:title="@string/menu_settings" />
+        <item
+            android:id="@+id/nav_contact_us"
+            android:icon="@drawable/contact_us"
+            android:title="@string/menu_contact_us" />
     </group>
 
 <!--    <item android:title="Communicate">-->
