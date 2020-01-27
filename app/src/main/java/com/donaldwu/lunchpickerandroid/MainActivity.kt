@@ -1,9 +1,12 @@
 package com.donaldwu.lunchpickerandroid
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -29,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         handleFloatingActionButton()
 
         setNavigationDrawer()
+
+        handleUrlClick()
     }
 
     private fun setToolBar() {
@@ -62,6 +67,17 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    private fun handleUrlClick() {
+        val navView: NavigationView = findViewById(R.id.nav_view)
+        val navHeaderView = navView.getHeaderView(0)
+        val url: TextView = navHeaderView.findViewById(R.id.url)
+        url.setOnClickListener {
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse("https://lunchpicker-2232b.firebaseapp.com")
+            startActivity(i)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
