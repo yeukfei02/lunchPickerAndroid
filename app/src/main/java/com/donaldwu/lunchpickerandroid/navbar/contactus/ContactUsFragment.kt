@@ -2,7 +2,6 @@ package com.donaldwu.lunchpickerandroid.navbar.contactus
 
 import android.content.Intent
 import android.net.Uri
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,7 +13,6 @@ import com.donaldwu.lunchpickerandroid.R
 
 class ContactUsFragment : Fragment() {
 
-    private lateinit var contactUsViewModel: ContactUsViewModel
     private val currencyList: ArrayList<String> = arrayListOf(
         "Hong Kong Dollar (HKD)",
         "Singapore Dollar (SGD)",
@@ -28,8 +26,6 @@ class ContactUsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_contact_us, container, false)
-
-        contactUsViewModel = ViewModelProviders.of(this).get(ContactUsViewModel::class.java)
 
         handleEmailIconClick(root)
 
