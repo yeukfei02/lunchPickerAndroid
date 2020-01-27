@@ -10,13 +10,11 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Switch
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import com.donaldwu.lunchpickerandroid.R
 
 class SettingsFragment : Fragment() {
 
-    private lateinit var settingsViewModel: SettingsViewModel
-    private var languageList: ArrayList<String> = arrayListOf("English", "Chinese")
+    private val languageList: ArrayList<String> = arrayListOf("English", "Chinese")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,8 +22,6 @@ class SettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_settings, container, false)
-
-        settingsViewModel = ViewModelProviders.of(this).get(SettingsViewModel::class.java)
 
         handleSwitchSubscribeMessage(root)
 

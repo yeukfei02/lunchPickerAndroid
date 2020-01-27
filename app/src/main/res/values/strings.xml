@@ -32,5 +32,6 @@
     <string name="donorbox">Donorbox</string>
     <string name="stripe">Stripe</string>
     <string name="donate_button">Donate</string>
+    <string name="enter_amount">Enter amount</string>
     <string name="pay_now_button">Pay now</string>
 </resources>
