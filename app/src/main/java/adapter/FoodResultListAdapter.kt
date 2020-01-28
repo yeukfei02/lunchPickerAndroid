@@ -26,7 +26,8 @@ class FoodResultListAdapter(
     private val ratingList: ArrayList<Double>,
     private val addressList: ArrayList<String>,
     private val phoneList: ArrayList<String>,
-    private val context: Context
+    private val context: Context,
+    private val isFavourites: Boolean
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemCount(): Int {
@@ -80,13 +81,19 @@ class FoodResultListAdapter(
             holder.itemView.rating_text_view.text = "Rating: %s".format(rating.toInt().toString())
 
             // favourites
-            holder.itemView.favourites_image_view.setOnClickListener {
-                val response = Server.addToFavourites(item)
-                Log.i("logger", "response = ${response}")
+            if (!isFavourites) {
+                holder.itemView.favourites_image_view.setImageResource(R.drawable.favourites_null)
 
+                holder.itemView.favourites_image_view.setOnClickListener {
+                    val response = Server.addToFavourites(item)
+                    Log.i("logger", "response = ${response}")
+
+                    holder.itemView.favourites_image_view.setImageResource(R.drawable.favourites_added)
+
+                    Snackbar.make(holder.itemView, "Add to favourites", Snackbar.LENGTH_SHORT).show()
+                }
+            } else {
                 holder.itemView.favourites_image_view.setImageResource(R.drawable.favourites_added)
-
-                Snackbar.make(holder.itemView, "Add to favourites", Snackbar.LENGTH_SHORT).show()
             }
         } catch (e: Exception) {
             Log.i("logger", "error = ${e.message}")

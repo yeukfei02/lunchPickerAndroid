@@ -4,7 +4,6 @@ import adapter.FoodResultListAdapter
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import org.json.JSONObject
 import server.Server
 import com.donaldwu.lunchpickerandroid.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONArray
 
@@ -283,15 +283,14 @@ class HomeFragment : Fragment() {
                                 ratingList,
                                 addressList,
                                 phoneList,
-                                root
+                                root,
+                                false
                             )
 
-                            val foodResultListRecyclerView: RecyclerView =
-                                root.findViewById(R.id.food_result_list_recyclerView)
+                            val foodResultListRecyclerView: RecyclerView = root.findViewById(R.id.food_result_list_recyclerView)
                             foodResultListRecyclerView.visibility = View.VISIBLE
 
-                            val noResultCardView: CardView =
-                                root.findViewById(R.id.no_result_card_view)
+                            val noResultCardView: CardView = root.findViewById(R.id.no_result_card_view)
                             noResultCardView.visibility = View.GONE
                         } else {
                             val foodResultListRecyclerView: RecyclerView = root.findViewById(R.id.food_result_list_recyclerView)
@@ -374,7 +373,8 @@ class HomeFragment : Fragment() {
                                 ratingList,
                                 addressList,
                                 phoneList,
-                                root
+                                root,
+                                false
                             )
 
                             val foodResultListRecyclerView: RecyclerView = root.findViewById(R.id.food_result_list_recyclerView)
@@ -423,16 +423,9 @@ class HomeFragment : Fragment() {
         ratingList: ArrayList<Double>,
         addressList: ArrayList<String>,
         phoneList: ArrayList<String>,
-        root: View
+        root: View,
+        isFavourites: Boolean
     ) {
-//        Log.i("logger", "nameList = ${nameList}")
-//        Log.i("logger", "titleList = ${titleList}")
-//        Log.i("logger", "imageUrlList = ${imageUrlList}")
-//        Log.i("logger", "urlList = ${urlList}")
-//        Log.i("logger", "ratingList = ${ratingList}")
-//        Log.i("logger", "addressList = ${addressList}")
-//        Log.i("logger", "phoneList = ${phoneList}")
-
         val foodResultListRecyclerView: RecyclerView = root.findViewById(R.id.food_result_list_recyclerView)
 
         val foodResultListAdapter = FoodResultListAdapter(
@@ -444,7 +437,8 @@ class HomeFragment : Fragment() {
             ratingList,
             addressList,
             phoneList,
-            root.context
+            root.context,
+            isFavourites
         )
         foodResultListRecyclerView.adapter = foodResultListAdapter
 
