@@ -2,6 +2,7 @@ package com.donaldwu.lunchpickerandroid.navbar.favourites
 
 import adapter.FoodResultListAdapter
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.donaldwu.lunchpickerandroid.R
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONArray
@@ -30,6 +32,8 @@ class FavouritesFragment : Fragment() {
         getFavourites(root)
 
         handleDeleteAllFavourites(root)
+
+        handleSwipeRefreshLayout(root)
 
         return root
     }
@@ -169,6 +173,17 @@ class FavouritesFragment : Fragment() {
                 getFavourites(root)
                 Snackbar.make(root, "Delete all favourites", Snackbar.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun handleSwipeRefreshLayout(root: View) {
+        val mSwipeRefreshLayout: SwipeRefreshLayout = root.findViewById(R.id.swipe_refresh_layout)
+        mSwipeRefreshLayout.setColorScheme(R.color.colorPrimary, R.color.colorPrimaryDark, R.color.colorAccent)
+        mSwipeRefreshLayout.setOnRefreshListener {
+            Handler().postDelayed({
+                getFavourites(root)
+                mSwipeRefreshLayout.isRefreshing = false
+            }, 1000)
         }
     }
 }
