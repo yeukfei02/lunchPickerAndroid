@@ -34,7 +34,7 @@ class FavouritesFragment : Fragment() {
         return root
     }
 
-    fun getFavourites(root: View) {
+    private fun getFavourites(root: View) {
         val response = Server.getFavourites()
         if (response != null && response.isNotEmpty()) {
             val responseJSONObject = JSONObject(response)
