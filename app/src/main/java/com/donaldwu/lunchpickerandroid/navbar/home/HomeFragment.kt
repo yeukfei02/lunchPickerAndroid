@@ -4,7 +4,7 @@ import adapter.FoodResultListAdapter
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,11 +14,12 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.snackbar.Snackbar
+import org.json.JSONArray
 import org.json.JSONObject
 import server.Server
 import com.donaldwu.lunchpickerandroid.R
-import com.google.android.material.snackbar.Snackbar
-import org.json.JSONArray
 
 class HomeFragment : Fragment() {
 
@@ -54,6 +55,8 @@ class HomeFragment : Fragment() {
         handleSubmitButton(root)
 
         handleClearButton(root)
+
+        handleSwipeRefreshLayout(root)
 
         return root
     }
@@ -251,8 +254,7 @@ class HomeFragment : Fragment() {
                                 val imageUrl = item.getString("image_url")
                                 val url = item.getString("url")
                                 val rating = item.getDouble("rating")
-                                val address =
-                                    item.getJSONObject("location").getJSONArray("display_address")
+                                val address = item.getJSONObject("location").getJSONArray("display_address")
                                 var combinedAddressItem = ""
                                 for (c in 0 until address.length()) {
                                     val addressItem = address.getString(c)
@@ -283,15 +285,14 @@ class HomeFragment : Fragment() {
                                 ratingList,
                                 addressList,
                                 phoneList,
-                                root
+                                root,
+                                false
                             )
 
-                            val foodResultListRecyclerView: RecyclerView =
-                                root.findViewById(R.id.food_result_list_recyclerView)
+                            val foodResultListRecyclerView: RecyclerView = root.findViewById(R.id.food_result_list_recyclerView)
                             foodResultListRecyclerView.visibility = View.VISIBLE
 
-                            val noResultCardView: CardView =
-                                root.findViewById(R.id.no_result_card_view)
+                            val noResultCardView: CardView = root.findViewById(R.id.no_result_card_view)
                             noResultCardView.visibility = View.GONE
                         } else {
                             val foodResultListRecyclerView: RecyclerView = root.findViewById(R.id.food_result_list_recyclerView)
@@ -374,7 +375,8 @@ class HomeFragment : Fragment() {
                                 ratingList,
                                 addressList,
                                 phoneList,
-                                root
+                                root,
+                                false
                             )
 
                             val foodResultListRecyclerView: RecyclerView = root.findViewById(R.id.food_result_list_recyclerView)
@@ -423,16 +425,9 @@ class HomeFragment : Fragment() {
         ratingList: ArrayList<Double>,
         addressList: ArrayList<String>,
         phoneList: ArrayList<String>,
-        root: View
+        root: View,
+        isFavourites: Boolean
     ) {
-//        Log.i("logger", "nameList = ${nameList}")
-//        Log.i("logger", "titleList = ${titleList}")
-//        Log.i("logger", "imageUrlList = ${imageUrlList}")
-//        Log.i("logger", "urlList = ${urlList}")
-//        Log.i("logger", "ratingList = ${ratingList}")
-//        Log.i("logger", "addressList = ${addressList}")
-//        Log.i("logger", "phoneList = ${phoneList}")
-
         val foodResultListRecyclerView: RecyclerView = root.findViewById(R.id.food_result_list_recyclerView)
 
         val foodResultListAdapter = FoodResultListAdapter(
@@ -444,7 +439,8 @@ class HomeFragment : Fragment() {
             ratingList,
             addressList,
             phoneList,
-            root.context
+            root.context,
+            isFavourites
         )
         foodResultListRecyclerView.adapter = foodResultListAdapter
 
@@ -453,5 +449,27 @@ class HomeFragment : Fragment() {
         foodResultListRecyclerView.layoutManager = linearLayoutManager
 
         foodResultListAdapter.notifyDataSetChanged()
+    }
+
+    private fun handleSwipeRefreshLayout(root: View) {
+        val mSwipeRefreshLayout: SwipeRefreshLayout = root.findViewById(R.id.swipe_refresh_layout)
+        mSwipeRefreshLayout.setColorScheme(R.color.colorPrimary, R.color.colorPrimaryDark, R.color.colorAccent)
+        mSwipeRefreshLayout.setOnRefreshListener {
+            Handler().postDelayed({
+                val placeLinearLayout: LinearLayout = root.findViewById(R.id.place_linear_layout)
+                placeLinearLayout.visibility = View.GONE
+
+                val needToShowLinearLayout: LinearLayout = root.findViewById(R.id.need_to_show_linear_layout)
+                needToShowLinearLayout.visibility = View.GONE
+
+                val foodResultListRecyclerView: RecyclerView = root.findViewById(R.id.food_result_list_recyclerView)
+                foodResultListRecyclerView.visibility = View.GONE
+
+                val noResultCardView: CardView = root.findViewById(R.id.no_result_card_view)
+                noResultCardView.visibility = View.GONE
+
+                mSwipeRefreshLayout.isRefreshing = false
+            }, 1000)
+        }
     }
 }

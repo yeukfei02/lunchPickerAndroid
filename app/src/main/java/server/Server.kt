@@ -16,6 +16,8 @@ class Server {
         private val findRestaurantsByLatLong = "%s/restaurant/find-restaurants-by-lat-long".format(rootUrl)
         private val addToFavouritesUrl = "%s/favourites/add-to-favourites".format(rootUrl)
         private val getFavouritesUrl = "%s/favourites/get-favourites".format(rootUrl)
+        private val deleteAllFavouritesUrl = "%s/favourites/delete-all-favourites".format(rootUrl)
+        private val deleteFavouritesByIdUrl = "%s/favourites/delete-favourites".format(rootUrl)
 
         fun getCategories(): String? {
             val client = OkHttpClient()
@@ -142,6 +144,40 @@ class Server {
 
             val request: Request = Request.Builder()
                 .header("Content-type", "application/json")
+                .url(url)
+                .build()
+
+            val response = client.newCall(request).execute()
+
+            return response.body?.string()
+        }
+
+        fun deleteAllFavourites(): String? {
+            val client = OkHttpClient()
+
+            val url = deleteAllFavouritesUrl
+            Log.i("logger", "url = ${url}")
+
+            val request: Request = Request.Builder()
+                .header("Content-type", "application/json")
+                .delete()
+                .url(url)
+                .build()
+
+            val response = client.newCall(request).execute()
+
+            return response.body?.string()
+        }
+
+        fun deleteFavouritesById(id: String): String? {
+            val client = OkHttpClient()
+
+            val url = "%s/%s".format(deleteFavouritesByIdUrl, id)
+            Log.i("logger", "url = ${url}")
+
+            val request: Request = Request.Builder()
+                .header("Content-type", "application/json")
+                .delete()
                 .url(url)
                 .build()
 
