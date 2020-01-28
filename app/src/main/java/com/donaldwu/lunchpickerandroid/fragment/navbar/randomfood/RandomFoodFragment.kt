@@ -1,4 +1,4 @@
-package com.donaldwu.lunchpickerandroid.navbar.randomfood
+package com.donaldwu.lunchpickerandroid.fragment.navbar.randomfood
 
 import android.os.Bundle
 import android.os.Handler

@@ -110,6 +110,13 @@ class FoodResultListAdapter(
 
                 holder.itemView.favourites_image_view.setImageResource(R.drawable.favourites_added)
             }
+            
+            // link
+            holder.itemView.link_image_view.setOnClickListener {
+                val i = Intent(Intent.ACTION_VIEW)
+                i.data = Uri.parse(url)
+                context.startActivity(i)
+            }
         } catch (e: Exception) {
             Log.i("logger", "error = ${e.message}")
         }

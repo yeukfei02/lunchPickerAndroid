@@ -1,4 +1,4 @@
-package com.donaldwu.lunchpickerandroid.navbar.contactus
+package com.donaldwu.lunchpickerandroid.fragment.navbar.contactus
 
 import android.content.Intent
 import android.net.Uri
