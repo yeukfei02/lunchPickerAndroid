@@ -1,4 +1,4 @@
-package com.donaldwu.lunchpickerandroid.navbar.home
+package com.donaldwu.lunchpickerandroid.fragment.navbar.home
 
 import adapter.FoodResultListAdapter
 import android.content.Context.MODE_PRIVATE

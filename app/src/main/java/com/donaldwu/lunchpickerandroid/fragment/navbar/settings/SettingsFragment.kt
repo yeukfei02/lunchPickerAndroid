@@ -1,4 +1,4 @@
-package com.donaldwu.lunchpickerandroid.navbar.settings
+package com.donaldwu.lunchpickerandroid.fragment.navbar.settings
 
 import android.os.Bundle
 import android.util.Log

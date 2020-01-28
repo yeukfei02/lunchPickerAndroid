@@ -1,4 +1,4 @@
-package com.donaldwu.lunchpickerandroid.navbar.favourites
+package com.donaldwu.lunchpickerandroid.fragment.navbar.favourites
 
 import adapter.FoodResultListAdapter
 import android.os.Bundle
@@ -77,8 +77,7 @@ class FavouritesFragment : Fragment() {
                     val imageUrl = item.getString("image_url")
                     val url = item.getString("url")
                     val rating = item.getDouble("rating")
-                    val address =
-                        item.getJSONObject("location").getJSONArray("display_address")
+                    val address = item.getJSONObject("location").getJSONArray("display_address")
                     var combinedAddressItem = ""
                     for (c in 0 until address.length()) {
                         val addressItem = address.getString(c)
