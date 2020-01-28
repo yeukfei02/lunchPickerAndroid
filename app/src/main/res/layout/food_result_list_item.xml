@@ -29,6 +29,7 @@
                 <ImageView
                     android:id="@+id/delete_favourites_button"
                     android:src="@android:drawable/ic_delete"
+                    android:contentDescription="@string/delete_favourites_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -122,12 +123,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-                <ImageView
-                    android:id="@+id/favourites_image_view"
-                    android:src="@drawable/favourites_null"
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_marginTop="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/favourites_image_view"
+                        android:src="@drawable/favourites_null"
+                        android:contentDescription="@string/favourites_image_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:id="@+id/link_image_view"
+                        android:src="@drawable/link"
+                        android:contentDescription="@string/link_image_view"
+                        android:layout_marginStart="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
