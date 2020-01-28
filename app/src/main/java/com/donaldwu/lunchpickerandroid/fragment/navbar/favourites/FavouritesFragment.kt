@@ -77,19 +77,14 @@ class FavouritesFragment : Fragment() {
                     val imageUrl = item.getString("image_url")
                     val url = item.getString("url")
                     val rating = item.getDouble("rating")
-                    val address = item.getJSONObject("location").getJSONArray("display_address")
-                    var combinedAddressItem = ""
-                    for (c in 0 until address.length()) {
-                        val addressItem = address.getString(c)
 
-                        if (c == 0) {
-                            combinedAddressItem += "%s".format(addressItem)
-                        } else {
-                            combinedAddressItem += ", %s".format(addressItem)
-                        }
-
-                        addressList.add(combinedAddressItem)
-                    }
+                    val regex = "[\\[\\]\"\\\\]+".toRegex()
+                    val address = item
+                        .getJSONObject("location")
+                        .getJSONArray("display_address")
+                        .toString()
+                        .replace(regex, "")
+                    addressList.add(address)
                     val phone = item.getString("display_phone")
 
                     nameList.add(name)
