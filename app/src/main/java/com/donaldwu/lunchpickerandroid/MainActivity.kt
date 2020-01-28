@@ -1,8 +1,13 @@
 package com.donaldwu.lunchpickerandroid
 
+import android.Manifest
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
 import android.net.Uri
 import android.os.Bundle
+import android.os.Looper
 import android.os.StrictMode
 import android.util.Log
 import android.view.Menu
@@ -10,12 +15,14 @@ import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.gms.location.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
@@ -23,12 +30,16 @@ import com.google.android.material.snackbar.Snackbar
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var mFusedLocationClient: FusedLocationProviderClient
+    private val permissionId = 44
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         setNetworkOnMainThread()
+
+        getCurrentLocation()
 
         setToolBar()
 
@@ -42,6 +53,100 @@ class MainActivity : AppCompatActivity() {
     private fun setNetworkOnMainThread() {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
+    }
+
+    private fun getCurrentLocation() {
+        val checkPermissionStatus = checkPermissions()
+        if (checkPermissionStatus) {
+            mFusedLocationClient = LocationServices.getFusedLocationProviderClient(applicationContext)
+
+            mFusedLocationClient.lastLocation.addOnCompleteListener {
+                val location: Location? = it.result
+                if (location == null) {
+                    requestNewLocationData()
+                } else {
+                    val latitude = location.latitude
+                    val longitude = location.longitude
+                    Log.i("logger", "latitude = ${latitude}")
+                    Log.i("logger", "longitude = ${longitude}")
+                    storeLatLongInSharedPreferences(latitude, longitude)
+                }
+            }
+        } else {
+            requestPermissions()
+        }
+    }
+
+    private fun checkPermissions(): Boolean {
+        return (ActivityCompat.checkSelfPermission(applicationContext, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(applicationContext, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+    }
+
+    private fun requestPermissions() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ),
+            permissionId
+        )
+    }
+
+    private fun requestNewLocationData() {
+        val mLocationRequest = LocationRequest()
+        mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        mLocationRequest.interval = 0
+        mLocationRequest.fastestInterval = 0
+        mLocationRequest.numUpdates = 1
+
+        val mLocationCallback: LocationCallback? = object: LocationCallback() {
+            override fun onLocationResult(p0: LocationResult?) {
+                super.onLocationResult(p0)
+
+                val locations = p0?.locations
+                if (locations != null) {
+                    val location = locations[0]
+                    val latitude = location.latitude
+                    val longitude = location.longitude
+                    Log.i("logger", "latitude = ${latitude}")
+                    Log.i("logger", "longitude = ${longitude}")
+                    storeLatLongInSharedPreferences(latitude, longitude)
+                }
+            }
+        }
+
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(applicationContext)
+        mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper())
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == permissionId) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getCurrentLocation()
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (checkPermissions()) {
+            getCurrentLocation()
+        }
+    }
+
+    private fun storeLatLongInSharedPreferences(latitude: Double, longitude: Double) {
+        val editor = getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE).edit()
+
+        val latitudeFloat = latitude.toFloat()
+        val longitudeFloat = longitude.toFloat()
+        editor.putFloat("latitude", latitudeFloat)
+        editor.putFloat("longitude", longitudeFloat)
+        editor.apply()
     }
 
     private fun setToolBar() {

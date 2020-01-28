@@ -110,17 +110,18 @@
                                 android:layout_marginTop="10dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
-
-                            <Button
-                                android:id="@+id/clear_button"
-                                android:background="@color/colorAccent"
-                                android:text="@string/clear"
-                                android:textColor="@android:color/white"
-                                android:layout_marginTop="10dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
                         </LinearLayout>
                     </LinearLayout>
+
+                    <Button
+                        android:id="@+id/clear_button"
+                        android:visibility="gone"
+                        android:background="@color/colorAccent"
+                        android:text="@string/clear"
+                        android:textColor="@android:color/white"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
