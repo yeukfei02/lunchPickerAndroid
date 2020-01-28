@@ -20,6 +20,7 @@
     <string name="enter_location">Enter location&#8230;</string>
     <string name="submit">Submit</string>
     <string name="clear">Clear</string>
+    <string name="there_are_no_result">There are no result.</string>
 
     <!-- Random food -->
 
@@ -39,4 +40,13 @@
     <string name="donate_button">Donate</string>
     <string name="enter_amount">Enter amount</string>
     <string name="pay_now_button">Pay now</string>
+
+    <!-- RecyclerView -->
+    <string name="card_view_name">Name: test</string>
+    <string name="card_view_category">Category: test, test</string>
+    <string name="card_view_image">Card view image</string>
+    <string name="card_view_location">Location:</string>
+    <string name="card_view_location_text_url">test</string>
+    <string name="card_view_phone">Phone: +852 1111 2222</string>
+    <string name="card_view_rating">Rating: 3.5</string>
 </resources>
