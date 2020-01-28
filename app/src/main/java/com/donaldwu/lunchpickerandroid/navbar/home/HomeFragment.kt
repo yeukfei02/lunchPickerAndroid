@@ -1,5 +1,6 @@
 package com.donaldwu.lunchpickerandroid.navbar.home
 
+import adapter.FoodResultListAdapter
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -8,8 +9,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.cardview.widget.CardView
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import org.json.JSONObject
 import server.Server
 import com.donaldwu.lunchpickerandroid.R
@@ -25,8 +29,6 @@ class HomeFragment : Fragment() {
     private var longitude = 0.0
 
     private var radioButtonValue = ""
-
-    private lateinit var resultList: JSONArray
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -91,7 +93,7 @@ class HomeFragment : Fragment() {
                 }
             }
 
-            foodCategoryList.add("")
+            foodCategoryList.add("Please select...")
 
             if (foodList.isNotEmpty()) {
                 foodList.forEach {
@@ -210,26 +212,183 @@ class HomeFragment : Fragment() {
         submitButton.setOnClickListener {
             if (radioButtonValue == "place") {
                 if (locationStr.isNotEmpty()) {
+                    if (selectedTerm == "Please select...") {
+                        selectedTerm = ""
+                    }
+
                     val response = Server.findRestaurantsByLocation(selectedTerm, locationStr)
                     if (response != null && response.isNotEmpty()) {
-                        Log.i("logger", "response = ${response}")
-
                         val responseJSONObject = JSONObject(response)
                         val restaurants = responseJSONObject.getJSONObject("restaurants")
                         val restaurantsList = restaurants.getJSONArray("businesses")
-                        resultList = restaurantsList
+
+                        if (restaurantsList.length() > 0) {
+                            val nameList = arrayListOf<String>()
+                            val titleList = arrayListOf<String>()
+                            val imageUrlList = arrayListOf<String>()
+                            val urlList = arrayListOf<String>()
+                            val ratingList = arrayListOf<Double>()
+                            val addressList = arrayListOf<String>()
+                            val phoneList = arrayListOf<String>()
+
+                            for (a in 0 until restaurantsList.length()) {
+                                val item = restaurantsList.getJSONObject(a)
+                                val name = item.getString("name")
+                                val categories = item.getJSONArray("categories")
+                                var combinedTitle = ""
+                                for (b in 0 until categories.length()) {
+                                    val category = categories.getJSONObject(b)
+                                    val title = category.getString("title")
+
+                                    if (b == 0) {
+                                        combinedTitle += "%s".format(title)
+                                    } else {
+                                        combinedTitle += ", %s".format(title)
+                                    }
+
+                                    titleList.add(combinedTitle)
+                                }
+                                val imageUrl = item.getString("image_url")
+                                val url = item.getString("url")
+                                val rating = item.getDouble("rating")
+                                val address =
+                                    item.getJSONObject("location").getJSONArray("display_address")
+                                var combinedAddressItem = ""
+                                for (c in 0 until address.length()) {
+                                    val addressItem = address.getString(c)
+
+                                    if (c == 0) {
+                                        combinedAddressItem += "%s".format(addressItem)
+                                    } else {
+                                        combinedAddressItem += ", %s".format(addressItem)
+                                    }
+
+                                    addressList.add(combinedAddressItem)
+                                }
+                                val phone = item.getString("display_phone")
+
+                                nameList.add(name)
+                                imageUrlList.add(imageUrl)
+                                urlList.add(url)
+                                ratingList.add(rating)
+                                phoneList.add(phone)
+                            }
+
+                            setFoodResultListRecyclerView(
+                                restaurantsList,
+                                nameList,
+                                titleList,
+                                imageUrlList,
+                                urlList,
+                                ratingList,
+                                addressList,
+                                phoneList,
+                                root
+                            )
+
+                            val foodResultListRecyclerView: RecyclerView =
+                                root.findViewById(R.id.food_result_list_recyclerView)
+                            foodResultListRecyclerView.visibility = View.VISIBLE
+
+                            val noResultCardView: CardView =
+                                root.findViewById(R.id.no_result_card_view)
+                            noResultCardView.visibility = View.GONE
+                        } else {
+                            val foodResultListRecyclerView: RecyclerView = root.findViewById(R.id.food_result_list_recyclerView)
+                            foodResultListRecyclerView.visibility = View.GONE
+
+                            val noResultCardView: CardView = root.findViewById(R.id.no_result_card_view)
+                            noResultCardView.visibility = View.VISIBLE
+                        }
                     }
                 }
             } else if (radioButtonValue == "currentLocation") {
                 if (latitude != 0.0 && longitude != 0.0) {
+                    if (selectedTerm == "Please select...") {
+                        selectedTerm = ""
+                    }
+
                     val response = Server.findRestaurantsByLatLong(selectedTerm, latitude, longitude)
                     if (response != null && response.isNotEmpty()) {
-                        Log.i("logger", "response = ${response}")
-
                         val responseJSONObject = JSONObject(response)
                         val restaurants = responseJSONObject.getJSONObject("restaurants")
                         val restaurantsList = restaurants.getJSONArray("businesses")
-                        resultList = restaurantsList
+
+                        if (restaurantsList.length() > 0) {
+                            val nameList = arrayListOf<String>()
+                            val titleList = arrayListOf<String>()
+                            val imageUrlList = arrayListOf<String>()
+                            val urlList = arrayListOf<String>()
+                            val ratingList = arrayListOf<Double>()
+                            val addressList = arrayListOf<String>()
+                            val phoneList = arrayListOf<String>()
+
+                            for (a in 0 until restaurantsList.length()) {
+                                val item = restaurantsList.getJSONObject(a)
+                                val name = item.getString("name")
+                                val categories = item.getJSONArray("categories")
+                                var combinedTitle = ""
+                                for (b in 0 until categories.length()) {
+                                    val category = categories.getJSONObject(b)
+                                    val title = category.getString("title")
+
+                                    if (b == 0) {
+                                        combinedTitle += "%s".format(title)
+                                    } else {
+                                        combinedTitle += ", %s".format(title)
+                                    }
+
+                                    titleList.add(combinedTitle)
+                                }
+                                val imageUrl = item.getString("image_url")
+                                val url = item.getString("url")
+                                val rating = item.getDouble("rating")
+                                val address = item.getJSONObject("location").getJSONArray("display_address")
+                                var combinedAddressItem = ""
+                                for (c in 0 until address.length()) {
+                                    val addressItem = address.getString(c)
+
+                                    if (c == 0) {
+                                        combinedAddressItem += "%s".format(addressItem)
+                                    } else {
+                                        combinedAddressItem += ", %s".format(addressItem)
+                                    }
+
+                                    addressList.add(combinedAddressItem)
+                                }
+                                val phone = item.getString("display_phone")
+
+                                nameList.add(name)
+                                imageUrlList.add(imageUrl)
+                                urlList.add(url)
+                                ratingList.add(rating)
+                                phoneList.add(phone)
+                            }
+
+                            setFoodResultListRecyclerView(
+                                restaurantsList,
+                                nameList,
+                                titleList,
+                                imageUrlList,
+                                urlList,
+                                ratingList,
+                                addressList,
+                                phoneList,
+                                root
+                            )
+
+                            val foodResultListRecyclerView: RecyclerView = root.findViewById(R.id.food_result_list_recyclerView)
+                            foodResultListRecyclerView.visibility = View.VISIBLE
+
+                            val noResultCardView: CardView = root.findViewById(R.id.no_result_card_view)
+                            noResultCardView.visibility = View.GONE
+                        } else {
+                            val foodResultListRecyclerView: RecyclerView = root.findViewById(R.id.food_result_list_recyclerView)
+                            foodResultListRecyclerView.visibility = View.GONE
+
+                            val noResultCardView: CardView = root.findViewById(R.id.no_result_card_view)
+                            noResultCardView.visibility = View.VISIBLE
+                        }
                     }
                 }
             }
@@ -245,9 +404,54 @@ class HomeFragment : Fragment() {
             val needToShowLinearLayout: LinearLayout = root.findViewById(R.id.need_to_show_linear_layout)
             needToShowLinearLayout.visibility = View.GONE
 
-            resultList = JSONArray()
+            val foodResultListRecyclerView: RecyclerView = root.findViewById(R.id.food_result_list_recyclerView)
+            foodResultListRecyclerView.visibility = View.GONE
 
-            Snackbar.make(root, "Clear result", Snackbar.LENGTH_LONG).show()
+            val noResultCardView: CardView = root.findViewById(R.id.no_result_card_view)
+            noResultCardView.visibility = View.GONE
+
+            Snackbar.make(root, "Clear result", Snackbar.LENGTH_SHORT).show()
         }
+    }
+
+    private fun setFoodResultListRecyclerView(
+        restaurantsList: JSONArray,
+        nameList: ArrayList<String>,
+        titleList: ArrayList<String>,
+        imageUrlList: ArrayList<String>,
+        urlList: ArrayList<String>,
+        ratingList: ArrayList<Double>,
+        addressList: ArrayList<String>,
+        phoneList: ArrayList<String>,
+        root: View
+    ) {
+//        Log.i("logger", "nameList = ${nameList}")
+//        Log.i("logger", "titleList = ${titleList}")
+//        Log.i("logger", "imageUrlList = ${imageUrlList}")
+//        Log.i("logger", "urlList = ${urlList}")
+//        Log.i("logger", "ratingList = ${ratingList}")
+//        Log.i("logger", "addressList = ${addressList}")
+//        Log.i("logger", "phoneList = ${phoneList}")
+
+        val foodResultListRecyclerView: RecyclerView = root.findViewById(R.id.food_result_list_recyclerView)
+
+        val foodResultListAdapter = FoodResultListAdapter(
+            restaurantsList,
+            nameList,
+            titleList,
+            imageUrlList,
+            urlList,
+            ratingList,
+            addressList,
+            phoneList,
+            root.context
+        )
+        foodResultListRecyclerView.adapter = foodResultListAdapter
+
+        val linearLayoutManager = LinearLayoutManager(root.context)
+        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+        foodResultListRecyclerView.layoutManager = linearLayoutManager
+
+        foodResultListAdapter.notifyDataSetChanged()
     }
 }
