@@ -2,6 +2,7 @@ package com.donaldwu.lunchpickerandroid.navbar.favourites
 
 import adapter.FoodResultListAdapter
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.donaldwu.lunchpickerandroid.R
+import com.google.android.material.snackbar.Snackbar
 import org.json.JSONArray
 import org.json.JSONObject
 import server.Server
@@ -32,16 +34,16 @@ class FavouritesFragment : Fragment() {
         return root
     }
 
-    private fun getFavourites(root: View) {
+    fun getFavourites(root: View) {
         val response = Server.getFavourites()
         if (response != null && response.isNotEmpty()) {
             val responseJSONObject = JSONObject(response)
             val favouritesList = responseJSONObject.getJSONArray("favourites")
 
-            if (favouritesList.length() > 0) {
-                val yourTotalFavourites: TextView = root.findViewById(R.id.your_total_favourites)
-                yourTotalFavourites.text = "Your total favourites: %s".format(favouritesList.length().toString())
+            val yourTotalFavourites: TextView = root.findViewById(R.id.your_total_favourites)
+            yourTotalFavourites.text = "Your total favourites: %s".format(favouritesList.length().toString())
 
+            if (favouritesList.length() > 0) {
                 val nameList = arrayListOf<String>()
                 val titleList = arrayListOf<String>()
                 val imageUrlList = arrayListOf<String>()
@@ -160,7 +162,13 @@ class FavouritesFragment : Fragment() {
     private fun handleDeleteAllFavourites(root: View) {
         val deleteAllFavouritesButton: Button = root.findViewById(R.id.delete_all_favourites_button)
         deleteAllFavouritesButton.setOnClickListener {
+            val response = Server.deleteAllFavourites()
+            Log.i("logger", "response = ${response}")
 
+            if (response != null && response.isNotEmpty()) {
+                getFavourites(root)
+                Snackbar.make(root, "Delete all favourites", Snackbar.LENGTH_SHORT).show()
+            }
         }
     }
 }

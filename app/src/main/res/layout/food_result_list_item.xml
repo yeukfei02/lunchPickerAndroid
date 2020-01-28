@@ -19,8 +19,25 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:id="@+id/delete_favourites_button_linear_layout"
+                android:visibility="gone"
+                android:gravity="end"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/delete_favourites_button"
+                    android:src="@android:drawable/ic_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/name_linear_layout"
                 android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/delete_favourites_button_linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 

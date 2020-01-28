@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView
 import org.json.JSONObject
 import server.Server
 import com.donaldwu.lunchpickerandroid.R
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONArray
 

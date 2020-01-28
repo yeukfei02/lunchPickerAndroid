@@ -82,17 +82,32 @@ class FoodResultListAdapter(
 
             // favourites
             if (!isFavourites) {
+                holder.itemView.delete_favourites_button_linear_layout.visibility = View.GONE
+
                 holder.itemView.favourites_image_view.setImageResource(R.drawable.favourites_null)
 
                 holder.itemView.favourites_image_view.setOnClickListener {
                     val response = Server.addToFavourites(item)
                     Log.i("logger", "response = ${response}")
 
-                    holder.itemView.favourites_image_view.setImageResource(R.drawable.favourites_added)
-
-                    Snackbar.make(holder.itemView, "Add to favourites", Snackbar.LENGTH_SHORT).show()
+                    if (response != null && response.isNotEmpty()) {
+                        holder.itemView.favourites_image_view.setImageResource(R.drawable.favourites_added)
+                        Snackbar.make(holder.itemView, "Add to favourites", Snackbar.LENGTH_SHORT).show()
+                    }
                 }
             } else {
+                holder.itemView.delete_favourites_button_linear_layout.visibility = View.VISIBLE
+
+                holder.itemView.delete_favourites_button.setOnClickListener {
+                    val id = item.getString("_id")
+                    val response = Server.deleteFavouritesById(id)
+                    Log.i("logger", "response = ${response}")
+
+                    if (response != null && response.isNotEmpty()) {
+                        Snackbar.make(holder.itemView, "Delete favourites by id", Snackbar.LENGTH_SHORT).show()
+                    }
+                }
+
                 holder.itemView.favourites_image_view.setImageResource(R.drawable.favourites_added)
             }
         } catch (e: Exception) {
