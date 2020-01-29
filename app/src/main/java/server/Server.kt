@@ -11,13 +11,16 @@ class Server {
         private const val scheme = "https"
         private const val host = "lunch-picker-api.herokuapp.com"
         private val getCategoriesUrl = "%s/category/get-categories".format(rootUrl)
-        private val findLocationByLatLongUrl = "%s/restaurant/find-location-text-by-lat-long".format(rootUrl)
-        private val findRestaurantsByLocation = "%s/restaurant/find-restaurants-by-location".format(rootUrl)
-        private val findRestaurantsByLatLong = "%s/restaurant/find-restaurants-by-lat-long".format(rootUrl)
-        private val addToFavouritesUrl = "%s/favourites/add-to-favourites".format(rootUrl)
+//        private val findLocationByLatLongUrl = "%s/restaurant/find-location-text-by-lat-long".format(rootUrl)
+//        private val findRestaurantsByLocation = "%s/restaurant/find-restaurants-by-location".format(rootUrl)
+//        private val findRestaurantsByLatLong = "%s/restaurant/find-restaurants-by-lat-long".format(rootUrl)
+//        private val addToFavouritesUrl = "%s/favourites/add-to-favourites".format(rootUrl)
         private val getFavouritesUrl = "%s/favourites/get-favourites".format(rootUrl)
         private val deleteAllFavouritesUrl = "%s/favourites/delete-all-favourites".format(rootUrl)
         private val deleteFavouritesByIdUrl = "%s/favourites/delete-favourites".format(rootUrl)
+//        private val addTokenToServerUrl = "%s/firebase/add-token-to-server".format(rootUrl)
+//        private val subscribeTopicUrl = "%s/firebase/subscribe-topic".format(rootUrl)
+//        private val unsubscribeTopicUrl = "%s/firebase/unsubscribe-topic".format(rootUrl)
 
         fun getCategories(): String? {
             val client = OkHttpClient()
@@ -178,6 +181,102 @@ class Server {
             val request: Request = Request.Builder()
                 .header("Content-type", "application/json")
                 .delete()
+                .url(url)
+                .build()
+
+            val response = client.newCall(request).execute()
+
+            return response.body?.string()
+        }
+
+        fun addTokenToServer(currentToken: String, refreshedToken: String): String? {
+            val client = OkHttpClient()
+
+            val urlBuilder = HttpUrl.Builder()
+            urlBuilder.scheme(scheme)
+            urlBuilder.host(host)
+            urlBuilder.addPathSegment("api")
+            urlBuilder.addPathSegment("firebase")
+            urlBuilder.addPathSegment("add-token-to-server")
+            val url = urlBuilder.build().toString()
+            Log.i("logger", "url = ${url}")
+
+            val data = JSONObject()
+            data.put("currentToken", currentToken)
+            data.put("refreshedToken", refreshedToken)
+
+            val body: RequestBody = RequestBody.create(
+                "application/json; charset=utf-8".toMediaType(),
+                data.toString()
+            )
+
+            val request: Request = Request.Builder()
+                .header("Content-type", "application/json")
+                .post(body)
+                .url(url)
+                .build()
+
+            val response = client.newCall(request).execute()
+
+            return response.body?.string()
+        }
+
+        fun subscribeTopic(currentTokenList: ArrayList<String>): String? {
+            val client = OkHttpClient()
+
+            val urlBuilder = HttpUrl.Builder()
+            urlBuilder.scheme(scheme)
+            urlBuilder.host(host)
+            urlBuilder.addPathSegment("api")
+            urlBuilder.addPathSegment("firebase")
+            urlBuilder.addPathSegment("subscribe-topic")
+            val url = urlBuilder.build().toString()
+            Log.i("logger", "url = ${url}")
+
+            val data = JSONObject()
+            data.put("currentTokenList", currentTokenList)
+            data.put("topic", "all")
+
+            val body: RequestBody = RequestBody.create(
+                "application/json; charset=utf-8".toMediaType(),
+                data.toString()
+            )
+
+            val request: Request = Request.Builder()
+                .header("Content-type", "application/json")
+                .post(body)
+                .url(url)
+                .build()
+
+            val response = client.newCall(request).execute()
+
+            return response.body?.string()
+        }
+
+        fun unsubscribeTopic(currentTokenList: ArrayList<String>): String? {
+            val client = OkHttpClient()
+
+            val urlBuilder = HttpUrl.Builder()
+            urlBuilder.scheme(scheme)
+            urlBuilder.host(host)
+            urlBuilder.addPathSegment("api")
+            urlBuilder.addPathSegment("firebase")
+            urlBuilder.addPathSegment("unsubscribe-topic")
+            val url = urlBuilder.build().toString()
+            Log.i("logger", "url = ${url}")
+
+            val data = JSONObject()
+            data.put("currentTokenList", currentTokenList)
+            data.put("topic", "all")
+
+            val body: RequestBody = RequestBody.create(
+                "application/json; charset=utf-8".toMediaType(),
+                data.toString()
+            )
+
+            val request: Request = Request.Builder()
+                .header("Content-type", "application/json")
+                .post(body)
                 .url(url)
                 .build()
 

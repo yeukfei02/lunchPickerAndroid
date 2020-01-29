@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "504803962297",
+    "firebase_url": "https://lunchpicker-2232b.firebaseio.com",
+    "project_id": "lunchpicker-2232b",
+    "storage_bucket": "lunchpicker-2232b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504803962297:android:4b883182d8bb85d94ada68",
+        "android_client_info": {
+          "package_name": "com.donaldwu.lunchpickerandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "504803962297-klsrg5r7f1q6b6tojavgrv0rrri47n7k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.donaldwu.lunchpickerandroid",
+            "certificate_hash": "594bf976b5da92b0b52058ba55d8ff9d31236fdf"
+          }
+        },
+        {
+          "client_id": "504803962297-mp46kh84bhco979r7hhvf4s7thcm7550.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3WHCbBsLZ1Ba9airK4FNi9q7SCq263f0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "504803962297-mp46kh84bhco979r7hhvf4s7thcm7550.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,7 @@
 package com.donaldwu.lunchpickerandroid.fragment.navbar.settings
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,6 +13,7 @@ import android.widget.Spinner
 import android.widget.Switch
 import androidx.fragment.app.Fragment
 import com.donaldwu.lunchpickerandroid.R
+import server.Server
 
 class SettingsFragment : Fragment() {
 
@@ -33,12 +36,25 @@ class SettingsFragment : Fragment() {
     private fun handleSwitchSubscribeMessage(root: View) {
         val switch: Switch = root.findViewById(R.id.switch_subscribe_message)
         switch.setOnCheckedChangeListener { buttonView, isChecked ->
+            val token = getCurrentTokenFromSharedPreferences(root)
+
             if (isChecked) {
-                Log.i("logger", "isChecked = true")
+                val currentTokenList = ArrayList<String>()
+                currentTokenList.add(token!!)
+                val response = Server.subscribeTopic(currentTokenList)
+                Log.i("logger", "response = ${response}")
             } else {
-                Log.i("logger", "isChecked = false")
+                val currentTokenList = ArrayList<String>()
+                currentTokenList.add(token!!)
+                val response = Server.unsubscribeTopic(currentTokenList)
+                Log.i("logger", "response = ${response}")
             }
         }
+    }
+
+    private fun getCurrentTokenFromSharedPreferences(root: View): String? {
+        val prefs: SharedPreferences = root.context.getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE)
+        return prefs.getString("token", "")
     }
 
     private fun handleLanguageDropdown(root: View) {
