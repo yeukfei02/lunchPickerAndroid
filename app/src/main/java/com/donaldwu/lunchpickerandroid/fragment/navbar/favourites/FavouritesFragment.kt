@@ -45,7 +45,7 @@ class FavouritesFragment : Fragment() {
             val favouritesList = responseJSONObject.getJSONArray("favourites")
 
             val yourTotalFavourites: TextView = root.findViewById(R.id.your_total_favourites)
-            yourTotalFavourites.text = "Your total favourites: %s".format(favouritesList.length().toString())
+            yourTotalFavourites.text = "%s".format(favouritesList.length().toString())
 
             if (favouritesList.length() > 0) {
                 val nameList = arrayListOf<String>()

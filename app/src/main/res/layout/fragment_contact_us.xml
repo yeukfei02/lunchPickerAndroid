@@ -145,13 +145,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
+                    <com.stripe.android.view.CardInputWidget
+                        android:id="@+id/card_input_widget"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp" />
+
                     <Button
                         android:id="@+id/pay_now_button"
                         android:background="@color/colorPrimary"
                         android:text="@string/pay_now_button"
                         android:textColor="@android:color/white"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="60dp" />
                 </LinearLayout>
 
             </LinearLayout>

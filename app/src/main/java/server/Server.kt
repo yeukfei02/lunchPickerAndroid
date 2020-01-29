@@ -21,21 +21,27 @@ class Server {
 //        private val addTokenToServerUrl = "%s/firebase/add-token-to-server".format(rootUrl)
 //        private val subscribeTopicUrl = "%s/firebase/subscribe-topic".format(rootUrl)
 //        private val unsubscribeTopicUrl = "%s/firebase/unsubscribe-topic".format(rootUrl)
+//        private val creditCardPaymentUrl = "%s/stripe/credit-card-payment".format(rootUrl)
 
         fun getCategories(): String? {
-            val client = OkHttpClient()
+            try {
+                val client = OkHttpClient()
 
-            val url = getCategoriesUrl
-            Log.i("logger", "url = ${url}")
+                val url = getCategoriesUrl
+                Log.i("logger", "url = ${url}")
 
-            val request: Request = Request.Builder()
-                .header("Content-type", "application/json")
-                .url(url)
-                .build()
+                val request: Request = Request.Builder()
+                    .header("Content-type", "application/json")
+                    .url(url)
+                    .build()
 
-            val response = client.newCall(request).execute()
+                val response = client.newCall(request).execute()
 
-            return response.body?.string()
+                return response.body?.string()
+            } catch(e: Exception) {
+                Log.i("logger", "error = ${e.message}")
+                return ""
+            }
         }
 
         fun findLocationByLatLong(latitude: Double, longitude: Double): String? {
@@ -268,6 +274,40 @@ class Server {
             val data = JSONObject()
             data.put("currentTokenList", currentTokenList)
             data.put("topic", "all")
+
+            val body: RequestBody = RequestBody.create(
+                "application/json; charset=utf-8".toMediaType(),
+                data.toString()
+            )
+
+            val request: Request = Request.Builder()
+                .header("Content-type", "application/json")
+                .post(body)
+                .url(url)
+                .build()
+
+            val response = client.newCall(request).execute()
+
+            return response.body?.string()
+        }
+
+        fun creditCardPayment(amount: Double, currency: String, token: String, card: JSONObject): String? {
+            val client = OkHttpClient()
+
+            val urlBuilder = HttpUrl.Builder()
+            urlBuilder.scheme(scheme)
+            urlBuilder.host(host)
+            urlBuilder.addPathSegment("api")
+            urlBuilder.addPathSegment("stripe")
+            urlBuilder.addPathSegment("credit-card-payment")
+            val url = urlBuilder.build().toString()
+            Log.i("logger", "url = ${url}")
+
+            val data = JSONObject()
+            data.put("amount", amount)
+            data.put("currency", currency)
+            data.put("token", token)
+            data.put("card", card)
 
             val body: RequestBody = RequestBody.create(
                 "application/json; charset=utf-8".toMediaType(),
