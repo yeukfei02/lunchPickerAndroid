@@ -47,16 +47,16 @@
                         android:id="@+id/email_icon"
                         android:src="@drawable/email"
                         android:contentDescription="@string/email_logo"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"/>
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"/>
 
                     <ImageView
                         android:id="@+id/github_icon"
                         android:src="@drawable/github"
                         android:contentDescription="@string/github_logo"
                         android:layout_marginStart="15dp"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"/>
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"/>
                 </LinearLayout>
             </LinearLayout>
 
