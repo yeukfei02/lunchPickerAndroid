@@ -25,7 +25,8 @@
     <!-- Random food -->
 
     <!-- Favourites -->
-    <string name="your_total_favourites">Your total favourites: 0</string>
+    <string name="your_total_favourites"><b>Your total favourites: </b></string>
+    <string name="your_total_favourites_value">0</string>
     <string name="delete_all_favourites">Delete all favourites</string>
 
     <!-- Settings -->

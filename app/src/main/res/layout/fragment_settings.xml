@@ -35,8 +35,6 @@
 
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -44,7 +42,7 @@
                         android:id="@+id/switch_subscribe_message"
                         android:checked="true"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="60dp"
                         android:theme="@style/Theme.MyTheme.Switch" />
 
                     <TextView
