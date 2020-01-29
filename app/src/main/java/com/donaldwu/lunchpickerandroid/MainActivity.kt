@@ -23,9 +23,12 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.gms.location.*
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.iid.FirebaseInstanceId
+import server.Server
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,6 +43,8 @@ class MainActivity : AppCompatActivity() {
         setNetworkOnMainThread()
 
         getCurrentLocation()
+
+        getFirebaseToken()
 
         setToolBar()
 
@@ -75,6 +80,30 @@ class MainActivity : AppCompatActivity() {
         } else {
             requestPermissions()
         }
+    }
+
+    private fun getFirebaseToken() {
+        FirebaseInstanceId.getInstance().instanceId.addOnCompleteListener(OnCompleteListener { task ->
+            if (task.isSuccessful) {
+                var token = task.result?.token
+                token = token?.substring(12)
+                Log.i("logger", "token = ${token}")
+
+                if (token!!.isNotEmpty()) {
+                    storeTokenInSharedPreferences(token)
+                    val response = Server.addTokenToServer(token, "")
+                    Log.i("logger", "response = ${response}")
+
+                    val currentTokenList = ArrayList<String>()
+                    currentTokenList.add(token)
+                    val response2 = Server.subscribeTopic(currentTokenList)
+                    Log.i("logger", "response2 = ${response2}")
+                }
+            } else {
+                Log.i("logger", "firebase getInstanceId failed = ${task.exception}")
+                return@OnCompleteListener
+            }
+        })
     }
 
     private fun checkPermissions(): Boolean {
@@ -146,6 +175,13 @@ class MainActivity : AppCompatActivity() {
         val longitudeFloat = longitude.toFloat()
         editor.putFloat("latitude", latitudeFloat)
         editor.putFloat("longitude", longitudeFloat)
+        editor.apply()
+    }
+
+    private fun storeTokenInSharedPreferences(token: String) {
+        val editor = getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE).edit()
+
+        editor.putString("token", token)
         editor.apply()
     }
 

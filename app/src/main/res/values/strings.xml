@@ -54,4 +54,7 @@
     <string name="delete_favourites_button">Delete favourites button</string>
     <string name="favourites_image_view">Favourites image view</string>
     <string name="link_image_view">Link image view</string>
+
+    <!-- Firebase messaging -->
+    <string name="default_notification_channel_id">1</string>
 </resources>
