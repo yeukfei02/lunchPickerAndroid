@@ -85,8 +85,7 @@ class MainActivity : AppCompatActivity() {
     private fun getFirebaseToken() {
         FirebaseInstanceId.getInstance().instanceId.addOnCompleteListener(OnCompleteListener { task ->
             if (task.isSuccessful) {
-                var token = task.result?.token
-                token = token?.substring(12)
+                val token = task.result?.token
                 Log.i("logger", "token = ${token}")
 
                 if (token!!.isNotEmpty()) {
