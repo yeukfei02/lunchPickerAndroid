@@ -30,7 +30,7 @@
                     <TextView
                         android:text="@string/your_total_favourites"
                         android:textColor="@android:color/black"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -38,7 +38,7 @@
                         android:id="@+id/your_total_favourites"
                         android:text="@string/your_total_favourites_value"
                         android:textColor="@android:color/black"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>

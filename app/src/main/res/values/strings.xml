@@ -36,6 +36,9 @@
     <!-- Settings -->
     <string name="subscribe_message">Subscribe message</string>
     <string name="change_language">Change language</string>
+    <string name="please_select">Please select&#8230;</string>
+    <string name="english">English</string>
+    <string name="chinese">Chinese</string>
 
     <!-- Contact us -->
     <string name="contact_us">Contact us via email or visit our github repo</string>
@@ -49,13 +52,15 @@
     <string name="pay_now_button">Pay now</string>
 
     <!-- RecyclerView food result list item-->
-    <string name="card_view_name">Name: test</string>
-    <string name="card_view_category">Category: test, test</string>
+    <string name="card_view_name">test</string>
+    <string name="card_view_category">test, test</string>
     <string name="card_view_image">Card view image</string>
     <string name="card_view_location">Location:</string>
     <string name="card_view_location_text_url">test</string>
-    <string name="card_view_phone">Phone: +852 1111 2222</string>
-    <string name="card_view_rating">Rating: 3.5</string>
+    <string name="card_view_phone">Phone:</string>
+    <string name="card_view_phone_value">+852 1111 2222</string>
+    <string name="card_view_rating">Rating:</string>
+    <string name="card_view_rating_value">3.5</string>
     <string name="delete_favourites_button">Delete favourites button</string>
     <string name="favourites_image_view">Favourites image view</string>
     <string name="link_image_view">Link image view</string>

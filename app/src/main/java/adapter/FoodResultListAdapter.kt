@@ -75,10 +75,10 @@ class FoodResultListAdapter(
             }
 
             // phone
-            holder.itemView.phone_text_view.text = "Phone: %s".format(phone)
+            holder.itemView.phone_text_view.text = "%s".format(phone)
 
             // rating
-            holder.itemView.rating_text_view.text = "Rating: %s".format(rating.toInt().toString())
+            holder.itemView.rating_text_view.text = "%s".format(rating.toInt().toString())
 
             // favourites
             if (!isFavourites) {

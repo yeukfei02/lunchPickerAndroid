@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LunchPicker</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">LunchPicker</string>
+    <string name="nav_header_subtitle"><u>https://lunchpicker-2232b.firebaseapp.com</u></string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">設定</string>
+
+    <string name="menu_home">主頁</string>
+    <string name="menu_random_food">隨機食物</string>
+    <string name="menu_favourites">我的最愛</string>
+    <string name="menu_settings">設定</string>
+    <string name="menu_contact_us">聯繫我們</string>
+
+    <!-- Home -->
+    <string name="logo">Logo</string>
+    <string name="place">地點</string>
+    <string name="current_location">當前位置</string>
+    <string name="enter_location">輸入位置&#8230;</string>
+    <string name="submit">提交</string>
+    <string name="clear">清除</string>
+    <string name="there_are_no_result">沒有結果</string>
+
+    <!-- Random food -->
+    <string name="current_food_category"><b>當前食品類別:</b></string>
+    <string name="current_food_category_value">test</string>
+    <string name="use_random_food_category">使用隨機食物類別</string>
+    <string name="refresh">更新</string>
+
+    <!-- Favourites -->
+    <string name="your_total_favourites"><b>全部我的最愛: </b></string>
+    <string name="your_total_favourites_value">0</string>
+    <string name="delete_all_favourites">清除全部我的最愛</string>
+
+    <!-- Settings -->
+    <string name="subscribe_message">訂閱消息</string>
+    <string name="change_language">改變語言</string>
+    <string name="please_select">請選擇&#8230;</string>
+    <string name="english">英文</string>
+    <string name="chinese">中文</string>
+
+    <!-- Contact us -->
+    <string name="contact_us">通過電子郵件聯繫我們或訪問我們的github repo</string>
+    <string name="email_logo">Email logo</string>
+    <string name="github_logo">Github logo</string>
+    <string name="donate">為lunch picker捐贈更好的功能和發展</string>
+    <string name="donorbox">Donorbox</string>
+    <string name="stripe">Stripe</string>
+    <string name="donate_button">捐贈</string>
+    <string name="enter_amount">輸入金額</string>
+    <string name="pay_now_button">付款</string>
+
+    <!-- RecyclerView food result list item-->
+    <string name="card_view_name">test</string>
+    <string name="card_view_category">test, test</string>
+    <string name="card_view_image">Card view image</string>
+    <string name="card_view_location">位置:</string>
+    <string name="card_view_location_text_url">test</string>
+    <string name="card_view_phone">電話:</string>
+    <string name="card_view_phone_value">+852 1111 2222</string>
+    <string name="card_view_rating">評分:</string>
+    <string name="card_view_rating_value">3.5</string>
+    <string name="delete_favourites_button">Delete favourites button</string>
+    <string name="favourites_image_view">Favourites image view</string>
+    <string name="link_image_view">Link image view</string>
+</resources>

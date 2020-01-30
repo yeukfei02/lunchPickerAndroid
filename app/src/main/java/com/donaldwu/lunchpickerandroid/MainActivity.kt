@@ -3,7 +3,9 @@ package com.donaldwu.lunchpickerandroid
 import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
@@ -30,6 +32,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.messaging.FirebaseMessaging
 import server.Server
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,6 +42,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setLocale()
         setContentView(R.layout.activity_main)
 
         setNetworkOnMainThread()
@@ -59,6 +63,23 @@ class MainActivity : AppCompatActivity() {
     private fun setNetworkOnMainThread() {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
+    }
+
+    private fun setLocale() {
+        val language = getLanguageFromSharedPreferences()
+
+        val locale = Locale(language!!)
+        Locale.setDefault(locale)
+
+        val config = Configuration()
+        config.setLocale(locale)
+
+        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+    }
+
+    private fun getLanguageFromSharedPreferences(): String? {
+        val prefs: SharedPreferences = getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE)
+        return prefs.getString("language", "en")
     }
 
     private fun getCurrentLocation() {
