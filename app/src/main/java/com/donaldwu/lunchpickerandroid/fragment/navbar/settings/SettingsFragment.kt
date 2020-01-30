@@ -1,7 +1,5 @@
 package com.donaldwu.lunchpickerandroid.fragment.navbar.settings
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,7 +11,8 @@ import android.widget.Spinner
 import android.widget.Switch
 import androidx.fragment.app.Fragment
 import com.donaldwu.lunchpickerandroid.R
-import server.Server
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.messaging.FirebaseMessaging
 
 class SettingsFragment : Fragment() {
 
@@ -36,25 +35,36 @@ class SettingsFragment : Fragment() {
     private fun handleSwitchSubscribeMessage(root: View) {
         val switch: Switch = root.findViewById(R.id.switch_subscribe_message)
         switch.setOnCheckedChangeListener { buttonView, isChecked ->
-            val token = getCurrentTokenFromSharedPreferences(root)
-
             if (isChecked) {
-                val currentTokenList = ArrayList<String>()
-                currentTokenList.add(token!!)
-                val response = Server.subscribeTopic(currentTokenList)
-                Log.i("logger", "response = ${response}")
+                subscribeTopic(root)
             } else {
-                val currentTokenList = ArrayList<String>()
-                currentTokenList.add(token!!)
-                val response = Server.unsubscribeTopic(currentTokenList)
-                Log.i("logger", "response = ${response}")
+                unsubscribeTopic(root)
             }
         }
     }
 
-    private fun getCurrentTokenFromSharedPreferences(root: View): String? {
-        val prefs: SharedPreferences = root.context.getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE)
-        return prefs.getString("token", "")
+    private fun subscribeTopic(root: View) {
+        FirebaseMessaging.getInstance().subscribeToTopic("all").addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Log.i("logger", "subscribe topic message success")
+                Snackbar.make(root, "Subscribe topic message success", Snackbar.LENGTH_SHORT).show()
+            } else {
+                Log.i("logger", "subscribe topic message fail")
+                Snackbar.make(root, "Subscribe topic message fail", Snackbar.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun unsubscribeTopic(root: View) {
+        FirebaseMessaging.getInstance().unsubscribeFromTopic("all").addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Log.i("logger", "unsubscribe topic message success")
+                Snackbar.make(root, "Unsubscribe topic message success", Snackbar.LENGTH_SHORT).show()
+            } else {
+                Log.i("logger", "unsubscribe topic message fail")
+                Snackbar.make(root, "Unsubscribe topic message fail", Snackbar.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun handleLanguageDropdown(root: View) {

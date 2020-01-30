@@ -28,6 +28,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.messaging.FirebaseMessaging
 import server.Server
 
 class MainActivity : AppCompatActivity() {
@@ -90,19 +91,27 @@ class MainActivity : AppCompatActivity() {
 
                 if (token!!.isNotEmpty()) {
                     storeTokenInSharedPreferences(token)
+
                     val response = Server.addTokenToServer(token, "")
                     Log.i("logger", "response = ${response}")
 
-                    val currentTokenList = ArrayList<String>()
-                    currentTokenList.add(token)
-                    val response2 = Server.subscribeTopic(currentTokenList)
-                    Log.i("logger", "response2 = ${response2}")
+                    subscribeTopic()
                 }
             } else {
                 Log.i("logger", "firebase getInstanceId failed = ${task.exception}")
                 return@OnCompleteListener
             }
         })
+    }
+
+    private fun subscribeTopic() {
+        FirebaseMessaging.getInstance().subscribeToTopic("all").addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Log.i("logger", "subscribe topic message success")
+            } else {
+                Log.i("logger", "subscribe topic message fail")
+            }
+        }
     }
 
     private fun checkPermissions(): Boolean {
