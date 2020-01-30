@@ -91,7 +91,6 @@ class RandomFoodFragment : Fragment() {
                 }
 
                 val foodCategoryList = arrayListOf<String>()
-                foodCategoryList.add("Please select...")
 
                 if (foodList.isNotEmpty()) {
                     foodList.forEach {

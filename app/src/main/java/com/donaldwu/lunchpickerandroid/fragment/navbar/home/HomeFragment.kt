@@ -98,8 +98,6 @@ class HomeFragment : Fragment() {
                     }
                 }
 
-                foodCategoryList.add("Please select...")
-
                 if (foodList.isNotEmpty()) {
                     foodList.forEach {
                         foodCategoryList.add(it)
@@ -239,10 +237,6 @@ class HomeFragment : Fragment() {
         submitButton.setOnClickListener {
             if (radioButtonValue == "place") {
                 if (locationStr.isNotEmpty()) {
-                    if (selectedTerm == "Please select...") {
-                        selectedTerm = ""
-                    }
-
                     val response = Server.findRestaurantsByLocation(selectedTerm, locationStr)
                     if (response != null && response.isNotEmpty()) {
                         val responseJSONObject = JSONObject(response)
@@ -324,10 +318,6 @@ class HomeFragment : Fragment() {
                 }
             } else if (radioButtonValue == "currentLocation") {
                 if (latitude != 0.0 && longitude != 0.0) {
-                    if (selectedTerm == "Please select...") {
-                        selectedTerm = ""
-                    }
-
                     val response = Server.findRestaurantsByLatLong(selectedTerm, latitude, longitude)
                     if (response != null && response.isNotEmpty()) {
                         val responseJSONObject = JSONObject(response)
