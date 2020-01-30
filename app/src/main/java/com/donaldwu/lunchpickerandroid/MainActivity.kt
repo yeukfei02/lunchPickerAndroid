@@ -255,7 +255,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_settings -> {
-                Log.i("logger", "settings menu selected")
+                val navController = findNavController(R.id.nav_host_fragment)
+                navController.navigate(R.id.nav_settings)
             }
         }
 
