@@ -1,5 +1,7 @@
 package com.donaldwu.lunchpickerandroid.fragment.navbar.settings
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,13 +12,14 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Switch
 import androidx.fragment.app.Fragment
+import com.donaldwu.lunchpickerandroid.MainActivity
 import com.donaldwu.lunchpickerandroid.R
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.messaging.FirebaseMessaging
 
 class SettingsFragment : Fragment() {
 
-    private val languageList: ArrayList<String> = arrayListOf("English", "Chinese")
+    private var languageList = arrayListOf<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,6 +72,11 @@ class SettingsFragment : Fragment() {
 
     private fun handleLanguageDropdown(root: View) {
         val spinner: Spinner = root.findViewById(R.id.language_dropdown)
+        languageList = arrayListOf(
+            resources.getString(R.string.please_select),
+            resources.getString(R.string.english),
+            resources.getString(R.string.chinese)
+        )
         val adapter: ArrayAdapter<String> = ArrayAdapter(
             root.context,
             android.R.layout.simple_spinner_dropdown_item,
@@ -80,10 +88,10 @@ class SettingsFragment : Fragment() {
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 val selectedItem = parent.getItemAtPosition(position).toString()
-                if (selectedItem == "English") {
-                    Log.i("logger", "change language to english")
-                } else if (selectedItem == "Chinese") {
-                    Log.i("logger", "change language to chinese")
+                if (selectedItem == "English" || selectedItem == "英文") {
+                    restartApp(root, "en")
+                } else if (selectedItem == "Chinese" || selectedItem == "中文") {
+                    restartApp(root, "zh")
                 }
             }
 
@@ -91,5 +99,19 @@ class SettingsFragment : Fragment() {
 
             }
         }
+    }
+
+    private fun restartApp(root: View, language: String) {
+        storeLanguageInSharedPreferences(root, language)
+
+        val intent = Intent(activity, MainActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun storeLanguageInSharedPreferences(root: View, language: String) {
+        val editor = root.context.getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE).edit()
+
+        editor.putString("language", language)
+        editor.apply()
     }
 }
