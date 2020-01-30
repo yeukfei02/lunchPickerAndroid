@@ -8,16 +8,15 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.Switch
-import android.widget.TextView
+import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.donaldwu.lunchpickerandroid.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import org.json.JSONArray
 import org.json.JSONObject
 import server.Server
@@ -49,6 +48,8 @@ class RandomFoodFragment : Fragment() {
         handleRefreshButton(root)
 
         handleSwipeRefreshLayout(root)
+
+        handleFloatingActionButton(root)
 
         return root
     }
@@ -318,5 +319,16 @@ class RandomFoodFragment : Fragment() {
         currentFoodCategoryLinearLayout.visibility = View.GONE
 
         getRandomFood(root)
+    }
+
+    private fun handleFloatingActionButton(root: View) {
+        val fab: FloatingActionButton = activity!!.findViewById(R.id.fab)
+        fab.setOnClickListener { view ->
+            val scrollView: ScrollView = root.findViewById(R.id.scrollView)
+            scrollView.fullScroll(ScrollView.FOCUS_UP)
+
+            Snackbar.make(view, "Back to top", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
+        }
     }
 }

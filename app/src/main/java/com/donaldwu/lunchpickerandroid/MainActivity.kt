@@ -26,9 +26,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.gms.location.*
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.messaging.FirebaseMessaging
 import server.Server
@@ -52,8 +50,6 @@ class MainActivity : AppCompatActivity() {
         getFirebaseToken()
 
         setToolBar()
-
-        handleFloatingActionButton()
 
         setNavigationDrawer()
 
@@ -217,14 +213,6 @@ class MainActivity : AppCompatActivity() {
     private fun setToolBar() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-    }
-
-    private fun handleFloatingActionButton() {
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Back to top", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
     }
 
     private fun setNavigationDrawer() {
