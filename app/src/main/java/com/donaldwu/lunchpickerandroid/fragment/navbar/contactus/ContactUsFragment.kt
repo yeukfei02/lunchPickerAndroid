@@ -183,7 +183,7 @@ class ContactUsFragment : Fragment() {
             val card = cardInputWidget.card
             if (card != null) {
                 if (card.validateCard()) {
-                    PaymentConfiguration.init(root.context, STRIPE_TEST_API_KEY)
+                    PaymentConfiguration.init(root.context, STRIPE_API_KEY)
                     val stripe = Stripe(root.context, PaymentConfiguration.getInstance(root.context).publishableKey)
 
                     val idempotencyKey = UUID.randomUUID().toString()
@@ -197,16 +197,13 @@ class ContactUsFragment : Fragment() {
 
                         override fun onError(e: Exception) {
                             Log.i("logger", "error = ${e.message}")
+                            Snackbar.make(root, e.message.toString(), Snackbar.LENGTH_SHORT).show()
                         }
                     })
 
                     if (amountNum != 0.0 && currency.isNotEmpty() && token.isNotEmpty()) {
-                        try {
-                            val response = Server.creditCardPayment(amountNum, currency, token, cardObj)
-                            Log.i("logger", "response = ${response}")
-                        } catch (e: Exception) {
-                            Log.i("logger", "error = ${e.message}")
-                        }
+                        val response = Server.creditCardPayment(amountNum, currency, token, cardObj)
+                        Log.i("logger", "response = ${response}")
                     }
                 } else {
                     Snackbar.make(root, "Card is not a valid card", Snackbar.LENGTH_SHORT).show()
