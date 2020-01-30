@@ -5,6 +5,7 @@ import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import server.Server
 import com.donaldwu.lunchpickerandroid.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class HomeFragment : Fragment() {
 
@@ -57,6 +59,8 @@ class HomeFragment : Fragment() {
         handleClearButton(root)
 
         handleSwipeRefreshLayout(root)
+
+        handleFloatingActionButton(root)
 
         return root
     }
@@ -152,18 +156,22 @@ class HomeFragment : Fragment() {
     }
 
     private fun findLocationByLatLong(root: View) {
-        if (latitude != 0.0 && longitude != 0.0) {
-            val response = Server.findLocationByLatLong(latitude, longitude)
-            if (response != null && response.isNotEmpty()) {
-                val responseJSONObject = JSONObject(response)
-                val location = responseJSONObject.getJSONObject("location")
-                val displayName = location.getString("display_name")
+        try {
+            if (latitude != 0.0 && longitude != 0.0) {
+                val response = Server.findLocationByLatLong(latitude, longitude)
+                if (response != null && response.isNotEmpty()) {
+                    val responseJSONObject = JSONObject(response)
+                    val location = responseJSONObject.getJSONObject("location")
+                    val displayName = location.getString("display_name")
 
-                locationStr = displayName
+                    locationStr = displayName
 
-                val locationEditText: EditText = root.findViewById(R.id.location_edit_text)
-                locationEditText.setText(displayName, TextView.BufferType.EDITABLE)
+                    val locationEditText: EditText = root.findViewById(R.id.location_edit_text)
+                    locationEditText.setText(displayName, TextView.BufferType.EDITABLE)
+                }
             }
+        } catch (e: Exception) {
+            Log.i("logger", "error = ${e.message}")
         }
     }
 
@@ -474,6 +482,17 @@ class HomeFragment : Fragment() {
 
                 mSwipeRefreshLayout.isRefreshing = false
             }, 1000)
+        }
+    }
+
+    private fun handleFloatingActionButton(root: View) {
+        val fab: FloatingActionButton = activity!!.findViewById(R.id.fab)
+        fab.setOnClickListener { view ->
+            val scrollView: ScrollView = root.findViewById(R.id.scrollView)
+            scrollView.fullScroll(ScrollView.FOCUS_UP)
+
+            Snackbar.make(view, "Back to top", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
         }
     }
 }
