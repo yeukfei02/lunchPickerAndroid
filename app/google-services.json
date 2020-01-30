@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "504803962297-o5ema47017bmeglmbfv4e71fvjj4r5ja.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.donaldwu.lunchpickerandroid",
+            "certificate_hash": "60cb1040c142378e685354156ba16ba9dbcf9502"
+          }
+        },
+        {
           "client_id": "504803962297-klsrg5r7f1q6b6tojavgrv0rrri47n7k.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
