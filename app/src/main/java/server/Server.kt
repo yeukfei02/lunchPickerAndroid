@@ -11,17 +11,9 @@ class Server {
         private const val scheme = "https"
         private const val host = "lunch-picker-api.herokuapp.com"
         private val getCategoriesUrl = "%s/category/get-categories".format(rootUrl)
-//        private val findLocationByLatLongUrl = "%s/restaurant/find-location-text-by-lat-long".format(rootUrl)
-//        private val findRestaurantsByLocation = "%s/restaurant/find-restaurants-by-location".format(rootUrl)
-//        private val findRestaurantsByLatLong = "%s/restaurant/find-restaurants-by-lat-long".format(rootUrl)
-//        private val addToFavouritesUrl = "%s/favourites/add-to-favourites".format(rootUrl)
         private val getFavouritesUrl = "%s/favourites/get-favourites".format(rootUrl)
         private val deleteAllFavouritesUrl = "%s/favourites/delete-all-favourites".format(rootUrl)
         private val deleteFavouritesByIdUrl = "%s/favourites/delete-favourites".format(rootUrl)
-//        private val addTokenToServerUrl = "%s/firebase/add-token-to-server".format(rootUrl)
-//        private val subscribeTopicUrl = "%s/firebase/subscribe-topic".format(rootUrl)
-//        private val unsubscribeTopicUrl = "%s/firebase/unsubscribe-topic".format(rootUrl)
-//        private val creditCardPaymentUrl = "%s/stripe/credit-card-payment".format(rootUrl)
 
         fun getCategories(): String? {
             try {

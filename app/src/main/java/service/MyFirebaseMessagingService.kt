@@ -10,6 +10,8 @@ import server.Server
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
+        super.onNewToken(token)
+
         val refreshedToken = token
         Log.i("logger", "refreshedToken = $refreshedToken")
 
@@ -25,7 +27,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         Log.i("logger", "remoteMessage from = ${remoteMessage.from}")
         Log.i("logger", "remoteMessage notification title = ${remoteMessage.notification?.title}")
         Log.i("logger", "remoteMessage notification body = ${remoteMessage.notification?.body}")
-        Log.i("logger", "remoteMessage data = ${remoteMessage.data}")
     }
 
     private fun getCurrentTokenFromSharedPreferences(): String? {
