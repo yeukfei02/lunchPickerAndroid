@@ -23,6 +23,10 @@
     <string name="there_are_no_result">There are no result.</string>
 
     <!-- Random food -->
+    <string name="current_food_category"><b>Current food category:</b></string>
+    <string name="current_food_category_value">test</string>
+    <string name="use_random_food_category">Use random food category</string>
+    <string name="refresh">Refresh</string>
 
     <!-- Favourites -->
     <string name="your_total_favourites"><b>Your total favourites: </b></string>
@@ -44,7 +48,7 @@
     <string name="enter_amount">Enter amount</string>
     <string name="pay_now_button">Pay now</string>
 
-    <!-- RecyclerView foold result list item-->
+    <!-- RecyclerView food result list item-->
     <string name="card_view_name">Name: test</string>
     <string name="card_view_category">Category: test, test</string>
     <string name="card_view_image">Card view image</string>
