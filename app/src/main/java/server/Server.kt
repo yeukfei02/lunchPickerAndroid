@@ -16,24 +16,19 @@ class Server {
         private val deleteFavouritesByIdUrl = "%s/favourites/delete-favourites".format(rootUrl)
 
         fun getCategories(): String? {
-            try {
-                val client = OkHttpClient()
+            val client = OkHttpClient()
 
-                val url = getCategoriesUrl
-                Log.i("logger", "url = ${url}")
+            val url = getCategoriesUrl
+            Log.i("logger", "url = ${url}")
 
-                val request: Request = Request.Builder()
-                    .header("Content-type", "application/json")
-                    .url(url)
-                    .build()
+            val request: Request = Request.Builder()
+                .header("Content-type", "application/json")
+                .url(url)
+                .build()
 
-                val response = client.newCall(request).execute()
+            val response = client.newCall(request).execute()
 
-                return response.body?.string()
-            } catch(e: Exception) {
-                Log.i("logger", "error = ${e.message}")
-                return ""
-            }
+            return response.body?.string()
         }
 
         fun findLocationByLatLong(latitude: Double, longitude: Double): String? {

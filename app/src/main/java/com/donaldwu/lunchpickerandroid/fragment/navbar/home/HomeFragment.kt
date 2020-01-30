@@ -5,7 +5,6 @@ import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -156,22 +155,18 @@ class HomeFragment : Fragment() {
     }
 
     private fun findLocationByLatLong(root: View) {
-        try {
-            if (latitude != 0.0 && longitude != 0.0) {
-                val response = Server.findLocationByLatLong(latitude, longitude)
-                if (response != null && response.isNotEmpty()) {
-                    val responseJSONObject = JSONObject(response)
-                    val location = responseJSONObject.getJSONObject("location")
-                    val displayName = location.getString("display_name")
+        if (latitude != 0.0 && longitude != 0.0) {
+            val response = Server.findLocationByLatLong(latitude, longitude)
+            if (response != null && response.isNotEmpty()) {
+                val responseJSONObject = JSONObject(response)
+                val location = responseJSONObject.getJSONObject("location")
+                val displayName = location.getString("display_name")
 
-                    locationStr = displayName
+                locationStr = displayName
 
-                    val locationEditText: EditText = root.findViewById(R.id.location_edit_text)
-                    locationEditText.setText(displayName, TextView.BufferType.EDITABLE)
-                }
+                val locationEditText: EditText = root.findViewById(R.id.location_edit_text)
+                locationEditText.setText(displayName, TextView.BufferType.EDITABLE)
             }
-        } catch (e: Exception) {
-            Log.i("logger", "error = ${e.message}")
         }
     }
 
