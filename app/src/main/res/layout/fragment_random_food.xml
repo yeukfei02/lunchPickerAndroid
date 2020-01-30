@@ -15,21 +15,92 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <LinearLayout
+                android:padding="20dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/current_food_category_linear_layout"
+                    android:visibility="gone"
+                    android:orientation="horizontal"
+                    android:gravity="end"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="@string/current_food_category"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/current_food_category"
+                        android:text="@string/current_food_category_value"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp"
+                        android:layout_marginStart="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:gravity="end"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Switch
+                        android:id="@+id/use_random_food_category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:theme="@style/Theme.MyTheme.Switch" />
+
+                    <TextView
+                        android:text="@string/use_random_food_category"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/black"
+                        android:layout_marginStart="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/refresh_button"
+                    android:layout_gravity="end"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/refresh"
+                    android:textColor="@android:color/white"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/food_result_list_recyclerView"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <androidx.cardview.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/card_view"
-                android:layout_gravity="center"
-                android:layout_margin="50dp"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                card_view:cardCornerRadius="4dp">
+                android:id="@+id/no_result_card_view"
+                android:visibility="gone"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="@string/menu_random_food"
+                    android:padding="15dp"
+                    android:text="@string/there_are_no_result"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
+                    android:layout_height="wrap_content" />
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>

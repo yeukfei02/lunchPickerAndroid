@@ -23,7 +23,7 @@ import com.donaldwu.lunchpickerandroid.R
 
 class HomeFragment : Fragment() {
 
-    private val foodCategoryList = arrayListOf<String>()
+    private var foodCategoryList = arrayListOf<String>()
     private var selectedTerm = ""
     private var locationStr = ""
     private var latitude = 0.0
@@ -38,7 +38,7 @@ class HomeFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
-        getFoodCategories()
+        getFoodCategories(root)
 
         getCurrentLocationFromSharedPreferences(root)
 
@@ -61,64 +61,86 @@ class HomeFragment : Fragment() {
         return root
     }
 
-    private fun getFoodCategories() {
-        val response = Server.getCategories()
-        if (response != null && response.isNotEmpty()) {
-            val jsonObject = JSONObject(response)
-            val categories = jsonObject.getJSONArray("categories")
+    private fun getFoodCategories(root: View) {
+        val foodCategorySet = getFoodCategoryFromSharedPreferences(root)
+        if (foodCategorySet == null) {
+            val response = Server.getCategories()
+            if (response != null && response.isNotEmpty()) {
+                val jsonObject = JSONObject(response)
+                val categories = jsonObject.getJSONArray("categories")
 
-            val foodList = arrayListOf<String>()
-            val restaurantsList = arrayListOf<String>()
-            val barsList = arrayListOf<String>()
-            val breakfastBrunchList = arrayListOf<String>()
-            for (a in 0 until categories.length()) {
-                val item = categories.getJSONObject(a)
+                val foodList = arrayListOf<String>()
+                val restaurantsList = arrayListOf<String>()
+                val barsList = arrayListOf<String>()
+                val breakfastBrunchList = arrayListOf<String>()
+                for (a in 0 until categories.length()) {
+                    val item = categories.getJSONObject(a)
 
-                val parentAliases = item.getJSONArray("parent_aliases")
-                for (b in 0 until parentAliases.length()) {
-                    val parentAliasesItem = parentAliases.getString(b)
-                    if (parentAliasesItem == "food") {
-                        val title = item.getString("title")
-                        foodList.add(title)
-                    }
-                    if (parentAliasesItem == "restaurants") {
-                        val title = item.getString("title")
-                        restaurantsList.add(title)
-                    }
-                    if (parentAliasesItem == "bars") {
-                        val title = item.getString("title")
-                        barsList.add(title)
-                    }
-                    if (parentAliasesItem == "breakfast_brunch") {
-                        val title = item.getString("title")
-                        breakfastBrunchList.add(title)
+                    val parentAliases = item.getJSONArray("parent_aliases")
+                    for (b in 0 until parentAliases.length()) {
+                        val parentAliasesItem = parentAliases.getString(b)
+                        if (parentAliasesItem == "food") {
+                            val title = item.getString("title")
+                            foodList.add(title)
+                        }
+                        if (parentAliasesItem == "restaurants") {
+                            val title = item.getString("title")
+                            restaurantsList.add(title)
+                        }
+                        if (parentAliasesItem == "bars") {
+                            val title = item.getString("title")
+                            barsList.add(title)
+                        }
+                        if (parentAliasesItem == "breakfast_brunch") {
+                            val title = item.getString("title")
+                            breakfastBrunchList.add(title)
+                        }
                     }
                 }
-            }
 
-            foodCategoryList.add("Please select...")
+                if (foodList.isNotEmpty()) {
+                    foodList.forEach {
+                        foodCategoryList.add(it)
+                    }
+                }
+                if (restaurantsList.isNotEmpty()) {
+                    restaurantsList.forEach {
+                        foodCategoryList.add(it)
+                    }
+                }
+                if (barsList.isNotEmpty()) {
+                    barsList.forEach {
+                        foodCategoryList.add(it)
+                    }
+                }
+                if (breakfastBrunchList.isNotEmpty()) {
+                    breakfastBrunchList.forEach {
+                        foodCategoryList.add(it)
+                    }
+                }
 
-            if (foodList.isNotEmpty()) {
-                foodList.forEach {
-                    foodCategoryList.add(it)
-                }
+                val foodCategoryStringSet = foodCategoryList.toHashSet()
+                storeFoodCategoryInSharedPreferences(root, foodCategoryStringSet)
             }
-            if (restaurantsList.isNotEmpty()) {
-                restaurantsList.forEach {
-                    foodCategoryList.add(it)
-                }
+        } else {
+            val newFoodCategoryList = arrayListOf<String>()
+            foodCategorySet.forEach {
+                newFoodCategoryList.add(it)
             }
-            if (barsList.isNotEmpty()) {
-                barsList.forEach {
-                    foodCategoryList.add(it)
-                }
-            }
-            if (breakfastBrunchList.isNotEmpty()) {
-                breakfastBrunchList.forEach {
-                    foodCategoryList.add(it)
-                }
-            }
+            foodCategoryList = newFoodCategoryList
         }
+    }
+
+    private fun storeFoodCategoryInSharedPreferences(root: View, foodCategoryStringSet: HashSet<String>) {
+        val editor = root.context.getSharedPreferences("sharedPreferences", MODE_PRIVATE).edit()
+
+        editor.putStringSet("foodCategory", foodCategoryStringSet)
+        editor.apply()
+    }
+
+    private fun getFoodCategoryFromSharedPreferences(root: View): MutableSet<String>? {
+        val prefs: SharedPreferences = root.context.getSharedPreferences("sharedPreferences", MODE_PRIVATE)
+        return prefs.getStringSet("foodCategory", null)
     }
 
     private fun getCurrentLocationFromSharedPreferences(root: View) {
@@ -215,10 +237,6 @@ class HomeFragment : Fragment() {
         submitButton.setOnClickListener {
             if (radioButtonValue == "place") {
                 if (locationStr.isNotEmpty()) {
-                    if (selectedTerm == "Please select...") {
-                        selectedTerm = ""
-                    }
-
                     val response = Server.findRestaurantsByLocation(selectedTerm, locationStr)
                     if (response != null && response.isNotEmpty()) {
                         val responseJSONObject = JSONObject(response)
@@ -300,10 +318,6 @@ class HomeFragment : Fragment() {
                 }
             } else if (radioButtonValue == "currentLocation") {
                 if (latitude != 0.0 && longitude != 0.0) {
-                    if (selectedTerm == "Please select...") {
-                        selectedTerm = ""
-                    }
-
                     val response = Server.findRestaurantsByLatLong(selectedTerm, latitude, longitude)
                     if (response != null && response.isNotEmpty()) {
                         val responseJSONObject = JSONObject(response)
