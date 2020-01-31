@@ -18,6 +18,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.donaldwu.lunchpickerandroid.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import helper.Helper
 import org.json.JSONArray
 import org.json.JSONObject
 import server.Server
@@ -43,7 +44,8 @@ class FavouritesFragment : Fragment() {
     }
 
     private fun getFavourites(root: View) {
-        val response = Server.getFavourites()
+        val ip = Helper.getIPAddress(true)
+        val response = Server.getFavourites(ip)
         if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
             val responseJSONObject = JSONObject(response)
             val favouritesList = responseJSONObject.getJSONArray("favourites")

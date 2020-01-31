@@ -11,7 +11,6 @@ class Server {
         private const val scheme = "https"
         private const val host = "lunch-picker-api.herokuapp.com"
         private val getCategoriesUrl = "%s/category/get-categories".format(rootUrl)
-        private val getFavouritesUrl = "%s/favourites/get-favourites".format(rootUrl)
         private val deleteAllFavouritesUrl = "%s/favourites/delete-all-favourites".format(rootUrl)
         private val deleteFavouritesByIdUrl = "%s/favourites/delete-favourites".format(rootUrl)
 
@@ -104,7 +103,7 @@ class Server {
             return response.body?.string()
         }
 
-        fun addToFavourites(item: JSONObject): String? {
+        fun addToFavourites(ip: String, item: JSONObject): String? {
             val client = OkHttpClient()
 
             val urlBuilder = HttpUrl.Builder()
@@ -116,9 +115,13 @@ class Server {
             val url = urlBuilder.build().toString()
             Log.i("logger", "url = ${url}")
 
+            val data = JSONObject()
+            data.put("ip", ip)
+            data.put("item", item)
+
             val body: RequestBody = RequestBody.create(
                 "application/json; charset=utf-8".toMediaType(),
-                item.toString()
+                data.toString()
             )
 
             val request: Request = Request.Builder()
@@ -132,10 +135,17 @@ class Server {
             return response.body?.string()
         }
 
-        fun getFavourites(): String? {
+        fun getFavourites(ip: String): String? {
             val client = OkHttpClient()
 
-            val url = getFavouritesUrl
+            val urlBuilder = HttpUrl.Builder()
+            urlBuilder.scheme(scheme)
+            urlBuilder.host(host)
+            urlBuilder.addPathSegment("api")
+            urlBuilder.addPathSegment("favourites")
+            urlBuilder.addPathSegment("get-favourites")
+            urlBuilder.addQueryParameter("ip", ip)
+            val url = urlBuilder.build().toString()
             Log.i("logger", "url = ${url}")
 
             val request: Request = Request.Builder()
