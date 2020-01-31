@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.donaldwu.lunchpickerandroid.R
 import com.google.android.material.snackbar.Snackbar
+import helper.Helper
 import kotlinx.android.synthetic.main.food_result_list_item.view.*
 import org.json.JSONArray
 import server.Server
@@ -87,7 +88,8 @@ class FoodResultListAdapter(
                 holder.itemView.favourites_image_view.setImageResource(R.drawable.favourites_null)
 
                 holder.itemView.favourites_image_view.setOnClickListener {
-                    val response = Server.addToFavourites(item)
+                    val ip = Helper.getIPAddress(true)
+                    val response = Server.addToFavourites(ip, item)
                     Log.i("logger", "response = ${response}")
 
                     if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
