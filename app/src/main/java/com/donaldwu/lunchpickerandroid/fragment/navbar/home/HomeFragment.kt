@@ -68,7 +68,7 @@ class HomeFragment : Fragment() {
         val foodCategorySet = getFoodCategoryFromSharedPreferences(root)
         if (foodCategorySet == null) {
             val response = Server.getCategories()
-            if (response != null && response.isNotEmpty()) {
+            if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
                 val jsonObject = JSONObject(response)
                 val categories = jsonObject.getJSONArray("categories")
 
@@ -157,7 +157,7 @@ class HomeFragment : Fragment() {
     private fun findLocationByLatLong(root: View) {
         if (latitude != 0.0 && longitude != 0.0) {
             val response = Server.findLocationByLatLong(latitude, longitude)
-            if (response != null && response.isNotEmpty()) {
+            if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
                 val responseJSONObject = JSONObject(response)
                 val location = responseJSONObject.getJSONObject("location")
                 val displayName = location.getString("display_name")
@@ -241,7 +241,7 @@ class HomeFragment : Fragment() {
             if (radioButtonValue == "place") {
                 if (locationStr.isNotEmpty()) {
                     val response = Server.findRestaurantsByLocation(selectedTerm, locationStr)
-                    if (response != null && response.isNotEmpty()) {
+                    if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
                         val responseJSONObject = JSONObject(response)
                         val restaurants = responseJSONObject.getJSONObject("restaurants")
                         val restaurantsList = restaurants.getJSONArray("businesses")
@@ -322,7 +322,7 @@ class HomeFragment : Fragment() {
             } else if (radioButtonValue == "currentLocation") {
                 if (latitude != 0.0 && longitude != 0.0) {
                     val response = Server.findRestaurantsByLatLong(selectedTerm, latitude, longitude)
-                    if (response != null && response.isNotEmpty()) {
+                    if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
                         val responseJSONObject = JSONObject(response)
                         val restaurants = responseJSONObject.getJSONObject("restaurants")
                         val restaurantsList = restaurants.getJSONArray("businesses")

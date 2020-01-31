@@ -90,7 +90,7 @@ class FoodResultListAdapter(
                     val response = Server.addToFavourites(item)
                     Log.i("logger", "response = ${response}")
 
-                    if (response != null && response.isNotEmpty()) {
+                    if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
                         holder.itemView.favourites_image_view.setImageResource(R.drawable.favourites_added)
                         Snackbar.make(holder.itemView, "Add to favourites", Snackbar.LENGTH_SHORT).show()
                     }
@@ -103,7 +103,7 @@ class FoodResultListAdapter(
                     val response = Server.deleteFavouritesById(id)
                     Log.i("logger", "response = ${response}")
 
-                    if (response != null && response.isNotEmpty()) {
+                    if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
                         Snackbar.make(holder.itemView, "Delete favourites by id", Snackbar.LENGTH_SHORT).show()
                     }
                 }
