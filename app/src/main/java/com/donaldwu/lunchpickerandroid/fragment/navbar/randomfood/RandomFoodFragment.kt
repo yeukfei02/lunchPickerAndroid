@@ -58,7 +58,7 @@ class RandomFoodFragment : Fragment() {
         val foodCategorySet = getFoodCategoryFromSharedPreferences(root)
         if (foodCategorySet == null) {
             val response = Server.getCategories()
-            if (response != null && response.isNotEmpty()) {
+            if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
                 val jsonObject = JSONObject(response)
                 val categories = jsonObject.getJSONArray("categories")
 
@@ -146,7 +146,7 @@ class RandomFoodFragment : Fragment() {
 
     private fun getRandomFood(root: View) {
         val response = Server.findRestaurantsByLatLong(selectedTerm, latitude, longitude)
-        if (response != null && response.isNotEmpty()) {
+        if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
             val responseJSONObject = JSONObject(response)
             val restaurants = responseJSONObject.getJSONObject("restaurants")
             val restaurantsList = restaurants.getJSONArray("businesses")

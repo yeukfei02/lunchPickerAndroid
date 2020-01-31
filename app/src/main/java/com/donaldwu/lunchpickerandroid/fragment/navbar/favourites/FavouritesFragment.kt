@@ -44,7 +44,7 @@ class FavouritesFragment : Fragment() {
 
     private fun getFavourites(root: View) {
         val response = Server.getFavourites()
-        if (response != null && response.isNotEmpty()) {
+        if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
             val responseJSONObject = JSONObject(response)
             val favouritesList = responseJSONObject.getJSONArray("favourites")
 
@@ -167,7 +167,7 @@ class FavouritesFragment : Fragment() {
             val response = Server.deleteAllFavourites()
             Log.i("logger", "response = ${response}")
 
-            if (response != null && response.isNotEmpty()) {
+            if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
                 getFavourites(root)
                 Snackbar.make(root, "Delete all favourites", Snackbar.LENGTH_SHORT).show()
             }
