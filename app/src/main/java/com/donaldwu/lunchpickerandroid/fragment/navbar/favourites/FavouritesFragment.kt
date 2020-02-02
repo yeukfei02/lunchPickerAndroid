@@ -1,6 +1,6 @@
 package com.donaldwu.lunchpickerandroid.fragment.navbar.favourites
 
-import adapter.FoodResultListAdapter
+import com.donaldwu.lunchpickerandroid.adapter.FoodResultListAdapter
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -18,10 +18,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.donaldwu.lunchpickerandroid.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import helper.Helper
+import com.donaldwu.lunchpickerandroid.helper.Helper
 import org.json.JSONArray
 import org.json.JSONObject
-import server.Server
+import com.donaldwu.lunchpickerandroid.server.Server
 
 class FavouritesFragment : Fragment() {
 

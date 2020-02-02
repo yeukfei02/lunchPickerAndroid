@@ -1,4 +1,4 @@
-package helper
+package com.donaldwu.lunchpickerandroid.helper
 
 import android.util.Log
 import java.net.InetAddress

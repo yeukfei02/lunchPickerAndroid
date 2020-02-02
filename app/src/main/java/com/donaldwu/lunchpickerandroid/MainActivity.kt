@@ -29,7 +29,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.messaging.FirebaseMessaging
-import server.Server
+import com.donaldwu.lunchpickerandroid.server.Server
 import java.util.*
 
 class MainActivity : AppCompatActivity() {

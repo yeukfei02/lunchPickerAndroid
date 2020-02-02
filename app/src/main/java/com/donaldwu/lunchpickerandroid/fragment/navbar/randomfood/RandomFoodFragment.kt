@@ -1,6 +1,6 @@
 package com.donaldwu.lunchpickerandroid.fragment.navbar.randomfood
 
-import adapter.FoodResultListAdapter
+import com.donaldwu.lunchpickerandroid.adapter.FoodResultListAdapter
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -19,7 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONArray
 import org.json.JSONObject
-import server.Server
+import com.donaldwu.lunchpickerandroid.server.Server
 
 class RandomFoodFragment : Fragment() {
 

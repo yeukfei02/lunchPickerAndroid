@@ -1,11 +1,11 @@
-package service
+package com.donaldwu.lunchpickerandroid.service
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import server.Server
+import com.donaldwu.lunchpickerandroid.server.Server
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 

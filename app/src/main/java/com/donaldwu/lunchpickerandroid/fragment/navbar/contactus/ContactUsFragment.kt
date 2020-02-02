@@ -18,7 +18,7 @@ import com.stripe.android.Stripe
 import com.stripe.android.model.Token
 import com.stripe.android.view.CardInputWidget
 import org.json.JSONObject
-import server.Server
+import com.donaldwu.lunchpickerandroid.server.Server
 import java.util.*
 import kotlin.collections.ArrayList
 
