@@ -36,27 +36,45 @@
 
             <LinearLayout
                 android:id="@+id/name_linear_layout"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/delete_favourites_button_linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/name_text_view"
-                    android:text="@string/card_view_name"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp"
-                    android:layout_width="match_parent"
+                    android:id="@+id/circle_text_view"
+                    android:background="@drawable/circle"
+                    android:text="@string/card_view_circle_text"
+                    android:textColor="@android:color/white"
+                    android:textAlignment="center"
+                    android:textSize="30sp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/category_text_view"
-                    android:text="@string/card_view_category"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="14sp"
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/name_text_view"
+                        android:text="@string/card_view_name"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/category_text_view"
+                        android:text="@string/card_view_category"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -64,20 +82,20 @@
                 android:orientation="vertical"
                 android:gravity="center"
                 android:layout_below="@+id/name_linear_layout"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
+                <com.github.chrisbanes.photoview.PhotoView
                     android:id="@+id/image_view"
-                    android:contentDescription="@string/card_view_image"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp" />
+                    android:layout_height="200dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_below="@+id/image_linear_layout"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 

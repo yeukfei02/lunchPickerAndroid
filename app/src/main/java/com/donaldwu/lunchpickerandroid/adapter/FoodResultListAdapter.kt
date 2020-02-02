@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.donaldwu.lunchpickerandroid.R
+import com.donaldwu.lunchpickerandroid.activity.RestaurantDetailsActivity
 import com.google.android.material.snackbar.Snackbar
 import com.donaldwu.lunchpickerandroid.helper.Helper
 import kotlinx.android.synthetic.main.food_result_list_item.view.*
@@ -42,6 +43,12 @@ class FoodResultListAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         try {
             val item = restaurantsList.getJSONObject(position)
+            var id = ""
+            if (!isFavourites) {
+                id = item.getString("id")
+            } else {
+                id = item.getJSONObject("item").getString("id")
+            }
             val name = nameList[position]
             val title = titleList[position]
             val imageUrl = imageUrlList[position]
@@ -50,8 +57,21 @@ class FoodResultListAdapter(
             val address = addressList[position]
             val phone = phoneList[position]
 
+            // circle
+            holder.itemView.circle_text_view.text = name.substring(0, 1).toUpperCase()
+            holder.itemView.circle_text_view.setOnClickListener {
+                val i = Intent(context, RestaurantDetailsActivity::class.java)
+                i.putExtra("id", id)
+                context.startActivity(i)
+            }
+
             // name
             holder.itemView.name_text_view.text = name
+            holder.itemView.name_text_view.setOnClickListener {
+                val i = Intent(context, RestaurantDetailsActivity::class.java)
+                i.putExtra("id", id)
+                context.startActivity(i)
+            }
 
             // subtitle
             holder.itemView.category_text_view.text = title

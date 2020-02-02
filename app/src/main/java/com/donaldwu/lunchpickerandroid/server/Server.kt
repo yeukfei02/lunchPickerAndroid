@@ -200,7 +200,7 @@ class Server {
             urlBuilder.host(host)
             urlBuilder.addPathSegment("api")
             urlBuilder.addPathSegment("firebase")
-            urlBuilder.addPathSegment("add-token-to-com.donaldwu.lunchpickerandroid.server")
+            urlBuilder.addPathSegment("add-token-to-server")
             val url = urlBuilder.build().toString()
             Log.i("logger", "url = ${url}")
 
@@ -314,6 +314,29 @@ class Server {
             val request: Request = Request.Builder()
                 .header("Content-type", "application/json")
                 .post(body)
+                .url(url)
+                .build()
+
+            val response = client.newCall(request).execute()
+
+            return response.body?.string()
+        }
+
+        fun getRestaurantDetails(id: String): String? {
+            val client = OkHttpClient()
+
+            val urlBuilder = HttpUrl.Builder()
+            urlBuilder.scheme(scheme)
+            urlBuilder.host(host)
+            urlBuilder.addPathSegment("api")
+            urlBuilder.addPathSegment("restaurant")
+            urlBuilder.addPathSegment("get-restaurant-details")
+            urlBuilder.addPathSegment(id)
+            val url = urlBuilder.build().toString()
+            Log.i("logger", "url = ${url}")
+
+            val request: Request = Request.Builder()
+                .header("Content-type", "application/json")
                 .url(url)
                 .build()
 
