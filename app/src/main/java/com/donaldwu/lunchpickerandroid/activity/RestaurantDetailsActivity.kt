@@ -3,7 +3,6 @@ package com.donaldwu.lunchpickerandroid.activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
@@ -110,10 +109,6 @@ class RestaurantDetailsActivity : AppCompatActivity() {
                             val endStr = formatTimeStr(end)
                             val isOvernight = openItem.getBoolean("is_overnight")
                             val isOvernightStr = formatIsOvernight(isOvernight)
-                            Log.i("logger", "dayStr = ${dayStr}")
-                            Log.i("logger", "startStr = ${startStr}")
-                            Log.i("logger", "endStr = ${endStr}")
-                            Log.i("logger", "isOvernightStr = ${isOvernightStr}")
 
                             val tableRow = TableRow(applicationContext)
                             tableRow.setBackgroundResource(android.R.color.holo_red_light)
@@ -148,6 +143,8 @@ class RestaurantDetailsActivity : AppCompatActivity() {
                         }
                         val hoursType = item.getString("hours_type")
                         val isOpenNow = item.getBoolean("is_open_now")
+
+                        restaurantDetailsTableLayout.isStretchAllColumns = true
 
                         val restaurantDetailsHoursTypeTextView: TextView = findViewById(R.id.restaurant_details_hours_type_text_view)
                         restaurantDetailsHoursTypeTextView.text = hoursType.toLowerCase()

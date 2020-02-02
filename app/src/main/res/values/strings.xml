@@ -76,6 +76,10 @@
     <string name="restaurant_details_url_text_view_value">Open url</string>
     <string name="restaurant_details_location_text_view">Location:</string>
     <string name="restaurant_details_location_text_view_value">test</string>
+    <string name="restaurant_details_day">Days</string>
+    <string name="restaurant_details_start">Start</string>
+    <string name="restaurant_details_end">End</string>
+    <string name="restaurant_details_is_overnight">Is overnight</string>
     <string name="restaurant_details_hours_type_text_view">Hours type:</string>
     <string name="restaurant_details_hours_type_text_view_value">test</string>
     <string name="restaurant_details_is_open_now_text_view">is open now</string>
