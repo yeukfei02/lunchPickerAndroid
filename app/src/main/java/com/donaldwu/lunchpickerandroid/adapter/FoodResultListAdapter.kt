@@ -1,4 +1,4 @@
-package adapter
+package com.donaldwu.lunchpickerandroid.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.donaldwu.lunchpickerandroid.R
 import com.google.android.material.snackbar.Snackbar
-import helper.Helper
+import com.donaldwu.lunchpickerandroid.helper.Helper
 import kotlinx.android.synthetic.main.food_result_list_item.view.*
 import org.json.JSONArray
-import server.Server
+import com.donaldwu.lunchpickerandroid.server.Server
 import java.lang.Exception
 
 class FoodResultListAdapter(

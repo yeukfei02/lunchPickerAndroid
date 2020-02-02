@@ -1,4 +1,4 @@
-package server
+package com.donaldwu.lunchpickerandroid.server
 
 import android.util.Log
 import okhttp3.*
@@ -200,7 +200,7 @@ class Server {
             urlBuilder.host(host)
             urlBuilder.addPathSegment("api")
             urlBuilder.addPathSegment("firebase")
-            urlBuilder.addPathSegment("add-token-to-server")
+            urlBuilder.addPathSegment("add-token-to-com.donaldwu.lunchpickerandroid.server")
             val url = urlBuilder.build().toString()
             Log.i("logger", "url = ${url}")
 

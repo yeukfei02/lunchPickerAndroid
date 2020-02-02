@@ -1,6 +1,6 @@
 package com.donaldwu.lunchpickerandroid.fragment.navbar.home
 
-import adapter.FoodResultListAdapter
+import com.donaldwu.lunchpickerandroid.adapter.FoodResultListAdapter
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -18,7 +18,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONArray
 import org.json.JSONObject
-import server.Server
+import com.donaldwu.lunchpickerandroid.server.Server
 import com.donaldwu.lunchpickerandroid.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 

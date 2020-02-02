@@ -20,7 +20,7 @@
 
         <!-- Firebase messaging -->
         <service
-            android:name="service.MyFirebaseMessagingService"
+            android:name="com.donaldwu.lunchpickerandroid.service.MyFirebaseMessagingService"
             android:enabled="true"
             android:exported="true">
 
