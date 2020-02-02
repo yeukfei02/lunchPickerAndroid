@@ -77,4 +77,7 @@
     <string name="restaurant_details_url_text_view_value">打開網址</string>
     <string name="restaurant_details_location_text_view">位置:</string>
     <string name="restaurant_details_location_text_view_value">test</string>
+    <string name="restaurant_details_hours_type_text_view">小時類型:</string>
+    <string name="restaurant_details_hours_type_text_view_value">test</string>
+    <string name="restaurant_details_is_open_now_text_view">現在開放</string>
 </resources>
