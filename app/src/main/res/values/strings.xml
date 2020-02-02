@@ -73,7 +73,7 @@
     <string name="restaurant_details_phone_text_view">Phone:</string>
     <string name="restaurant_details_phone_text_view_value">+852 2222 3333</string>
     <string name="restaurant_details_url_text_view">Url:</string>
-    <string name="restaurant_details_url_text_view_value">test</string>
+    <string name="restaurant_details_url_text_view_value">Open url</string>
     <string name="restaurant_details_location_text_view">Location:</string>
     <string name="restaurant_details_location_text_view_value">test</string>
 </resources>

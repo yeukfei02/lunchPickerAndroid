@@ -86,11 +86,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
+                <com.github.chrisbanes.photoview.PhotoView
                     android:id="@+id/image_view"
-                    android:contentDescription="@string/card_view_image"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp" />
+                    android:layout_height="200dp" />
             </LinearLayout>
 
             <LinearLayout

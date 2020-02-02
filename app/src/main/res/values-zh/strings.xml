@@ -74,7 +74,7 @@
     <string name="restaurant_details_phone_text_view">電話:</string>
     <string name="restaurant_details_phone_text_view_value">+852 2222 3333</string>
     <string name="restaurant_details_url_text_view">網址:</string>
-    <string name="restaurant_details_url_text_view_value">test</string>
+    <string name="restaurant_details_url_text_view_value">打開網址</string>
     <string name="restaurant_details_location_text_view">位置:</string>
     <string name="restaurant_details_location_text_view_value">test</string>
 </resources>

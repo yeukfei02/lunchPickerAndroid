@@ -2,13 +2,17 @@ package com.donaldwu.lunchpickerandroid.activity
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.TextView
-import com.donaldwu.lunchpickerandroid.R
+import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
+import com.donaldwu.lunchpickerandroid.adapter.RestaurantDetailsPhotosAdapter
 import com.donaldwu.lunchpickerandroid.server.Server
+import com.github.vivchar.viewpagerindicator.ViewPagerIndicator
 import org.json.JSONArray
 import org.json.JSONObject
+import com.donaldwu.lunchpickerandroid.R
 
 class RestaurantDetailsActivity : AppCompatActivity() {
 
@@ -56,6 +60,11 @@ class RestaurantDetailsActivity : AppCompatActivity() {
                 if (restaurantDetails.has("hours"))
                     hours = restaurantDetails.getJSONArray("hours")
 
+                val restaurantDetailsViewPager: ViewPager = findViewById(R.id.restaurant_details_view_pager)
+                val adapter = RestaurantDetailsPhotosAdapter(photos)
+                restaurantDetailsViewPager.adapter = adapter
+                val restaurantDetailsViewPagerIndicator: ViewPagerIndicator = findViewById(R.id.restaurant_details_view_pager_indicator)
+                restaurantDetailsViewPagerIndicator.setupWithViewPager(restaurantDetailsViewPager)
 
                 val restaurantDetailsNameTextView: TextView = findViewById(R.id.restaurant_details_name_text_view_value)
                 restaurantDetailsNameTextView.text = name
@@ -64,7 +73,6 @@ class RestaurantDetailsActivity : AppCompatActivity() {
                 restaurantDetailsPhoneTextView.text = phone
 
                 val restaurantDetailsUrlTextView: TextView = findViewById(R.id.restaurant_details_url_text_view)
-                restaurantDetailsUrlTextView.text = url
                 restaurantDetailsUrlTextView.setOnClickListener {
                     val intent = Intent(Intent.ACTION_VIEW)
                     intent.data = Uri.parse(url)
@@ -80,5 +88,14 @@ class RestaurantDetailsActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+            }
+        }
+        return true
     }
 }

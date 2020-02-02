@@ -43,7 +43,12 @@ class FoodResultListAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         try {
             val item = restaurantsList.getJSONObject(position)
-            val id = item.getString("id")
+            var id = ""
+            if (!isFavourites) {
+                id = item.getString("id")
+            } else {
+                id = item.getJSONObject("item").getString("id")
+            }
             val name = nameList[position]
             val title = titleList[position]
             val imageUrl = imageUrlList[position]
