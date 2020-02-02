@@ -200,7 +200,7 @@ class Server {
             urlBuilder.host(host)
             urlBuilder.addPathSegment("api")
             urlBuilder.addPathSegment("firebase")
-            urlBuilder.addPathSegment("add-token-to-com.donaldwu.lunchpickerandroid.server")
+            urlBuilder.addPathSegment("add-token-to-server")
             val url = urlBuilder.build().toString()
             Log.i("logger", "url = ${url}")
 
