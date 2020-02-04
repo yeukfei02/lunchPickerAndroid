@@ -20,8 +20,8 @@ import org.json.JSONArray
 import org.json.JSONObject
 import com.donaldwu.lunchpickerandroid.server.Server
 import com.donaldwu.lunchpickerandroid.R
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.skydoves.elasticviews.ElasticButton
+import com.skydoves.elasticviews.ElasticFloatingActionButton
 
 class HomeFragment : Fragment() {
 
@@ -482,7 +482,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun handleFloatingActionButton(root: View) {
-        val fab: FloatingActionButton = activity!!.findViewById(R.id.fab)
+        val fab: ElasticFloatingActionButton = activity!!.findViewById(R.id.fab)
         fab.setOnClickListener { view ->
             val scrollView: ScrollView = root.findViewById(R.id.scrollView)
             scrollView.fullScroll(ScrollView.FOCUS_UP)
