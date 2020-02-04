@@ -21,6 +21,7 @@ import org.json.JSONObject
 import com.donaldwu.lunchpickerandroid.server.Server
 import com.donaldwu.lunchpickerandroid.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.skydoves.elasticviews.ElasticButton
 
 class HomeFragment : Fragment() {
 
@@ -204,7 +205,7 @@ class HomeFragment : Fragment() {
                 val needToShowLinearLayout: LinearLayout = root.findViewById(R.id.need_to_show_linear_layout)
                 needToShowLinearLayout.visibility = View.VISIBLE
 
-                val clearButton: Button = root.findViewById(R.id.clear_button)
+                val clearButton: ElasticButton = root.findViewById(R.id.clear_button)
                 clearButton.visibility = View.VISIBLE
             }
         }
@@ -222,7 +223,7 @@ class HomeFragment : Fragment() {
                 val needToShowLinearLayout: LinearLayout = root.findViewById(R.id.need_to_show_linear_layout)
                 needToShowLinearLayout.visibility = View.VISIBLE
 
-                val clearButton: Button = root.findViewById(R.id.clear_button)
+                val clearButton: ElasticButton = root.findViewById(R.id.clear_button)
                 clearButton.visibility = View.VISIBLE
             }
         }
@@ -236,7 +237,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun handleSubmitButton(root: View) {
-        val submitButton: Button = root.findViewById(R.id.submit_button)
+        val submitButton: ElasticButton = root.findViewById(R.id.submit_button)
         submitButton.setOnClickListener {
             if (radioButtonValue == "place") {
                 if (locationStr.isNotEmpty()) {
@@ -405,7 +406,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun handleClearButton(root: View) {
-        val clearButton: Button = root.findViewById(R.id.clear_button)
+        val clearButton: ElasticButton = root.findViewById(R.id.clear_button)
         clearButton.setOnClickListener {
             val placeLinearLayout: LinearLayout = root.findViewById(R.id.place_linear_layout)
             placeLinearLayout.visibility = View.GONE

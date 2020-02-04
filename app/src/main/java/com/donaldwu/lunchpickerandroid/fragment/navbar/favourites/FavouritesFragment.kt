@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -22,6 +21,7 @@ import com.donaldwu.lunchpickerandroid.helper.Helper
 import org.json.JSONArray
 import org.json.JSONObject
 import com.donaldwu.lunchpickerandroid.server.Server
+import com.skydoves.elasticviews.ElasticButton
 
 class FavouritesFragment : Fragment() {
 
@@ -164,7 +164,7 @@ class FavouritesFragment : Fragment() {
     }
 
     private fun handleDeleteAllFavourites(root: View) {
-        val deleteAllFavouritesButton: Button = root.findViewById(R.id.delete_all_favourites_button)
+        val deleteAllFavouritesButton: ElasticButton = root.findViewById(R.id.delete_all_favourites_button)
         deleteAllFavouritesButton.setOnClickListener {
             val response = Server.deleteAllFavourites()
             Log.i("logger", "response = ${response}")

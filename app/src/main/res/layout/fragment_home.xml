@@ -2,6 +2,7 @@
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     android:id="@+id/swipe_refresh_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -108,26 +109,32 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
-                                <Button
+                                <com.skydoves.elasticviews.ElasticButton
                                     android:id="@+id/submit_button"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:background="@color/colorPrimary"
                                     android:text="@string/submit"
                                     android:textColor="@android:color/white"
                                     android:layout_marginTop="10dp"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
+                                    app:button_cornerRadius="4dp"
+                                    app:button_duration="250"
+                                    app:button_scale="0.87" />
                             </LinearLayout>
                         </LinearLayout>
 
-                        <Button
+                        <com.skydoves.elasticviews.ElasticButton
                             android:id="@+id/clear_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:visibility="gone"
                             android:background="@color/colorAccent"
                             android:text="@string/clear"
                             android:textColor="@android:color/white"
                             android:layout_marginTop="10dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            app:button_cornerRadius="4dp"
+                            app:button_duration="250"
+                            app:button_scale="0.87" />
                     </LinearLayout>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>

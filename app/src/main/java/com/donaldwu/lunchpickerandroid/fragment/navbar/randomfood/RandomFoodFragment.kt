@@ -20,6 +20,7 @@ import com.google.android.material.snackbar.Snackbar
 import org.json.JSONArray
 import org.json.JSONObject
 import com.donaldwu.lunchpickerandroid.server.Server
+import com.skydoves.elasticviews.ElasticButton
 
 class RandomFoodFragment : Fragment() {
 
@@ -274,7 +275,7 @@ class RandomFoodFragment : Fragment() {
     }
 
     private fun handleRefreshButton(root: View) {
-        val refreshButton: Button = root.findViewById(R.id.refresh_button)
+        val refreshButton: ElasticButton = root.findViewById(R.id.refresh_button)
         refreshButton.setOnClickListener {
             if (switchCheckedStatus) {
                 getRandomFoodWithSwitchOn(root)

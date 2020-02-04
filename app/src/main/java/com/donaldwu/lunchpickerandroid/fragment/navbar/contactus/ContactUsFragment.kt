@@ -19,6 +19,7 @@ import com.stripe.android.model.Token
 import com.stripe.android.view.CardInputWidget
 import org.json.JSONObject
 import com.donaldwu.lunchpickerandroid.server.Server
+import com.skydoves.elasticviews.ElasticButton
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -111,7 +112,7 @@ class ContactUsFragment : Fragment() {
     }
 
     private fun handleDonateButton(root: View) {
-        val donateButton: Button = root.findViewById(R.id.donate_button)
+        val donateButton: ElasticButton = root.findViewById(R.id.donate_button)
         donateButton.setOnClickListener {
             val i = Intent(Intent.ACTION_VIEW)
             i.data = Uri.parse("https://donorbox.org/donate-for-lunch-picker-better-features-and-development")
@@ -177,7 +178,7 @@ class ContactUsFragment : Fragment() {
     }
 
     private fun handlePayNowButton(root: View) {
-        val payNowButton: Button = root.findViewById(R.id.pay_now_button)
+        val payNowButton: ElasticButton = root.findViewById(R.id.pay_now_button)
         payNowButton.setOnClickListener {
             val cardInputWidget: CardInputWidget = root.findViewById(R.id.card_input_widget)
             val card = cardInputWidget.card
