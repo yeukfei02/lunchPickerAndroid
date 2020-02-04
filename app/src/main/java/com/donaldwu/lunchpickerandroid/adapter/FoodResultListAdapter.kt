@@ -121,8 +121,8 @@ class FoodResultListAdapter(
                 holder.itemView.delete_favourites_button_linear_layout.visibility = View.VISIBLE
 
                 holder.itemView.delete_favourites_button.setOnClickListener {
-                    val id = item.getString("_id")
-                    val response = Server.deleteFavouritesById(id)
+                    val favouritesItemId = item.getString("_id")
+                    val response = Server.deleteFavouritesById(favouritesItemId)
                     Log.i("logger", "response = ${response}")
 
                     if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {

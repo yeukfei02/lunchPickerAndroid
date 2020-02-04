@@ -15,11 +15,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.donaldwu.lunchpickerandroid.R
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONArray
 import org.json.JSONObject
 import com.donaldwu.lunchpickerandroid.server.Server
+import com.skydoves.elasticviews.ElasticButton
+import com.skydoves.elasticviews.ElasticFloatingActionButton
 
 class RandomFoodFragment : Fragment() {
 
@@ -274,7 +275,7 @@ class RandomFoodFragment : Fragment() {
     }
 
     private fun handleRefreshButton(root: View) {
-        val refreshButton: Button = root.findViewById(R.id.refresh_button)
+        val refreshButton: ElasticButton = root.findViewById(R.id.refresh_button)
         refreshButton.setOnClickListener {
             if (switchCheckedStatus) {
                 getRandomFoodWithSwitchOn(root)
@@ -322,7 +323,7 @@ class RandomFoodFragment : Fragment() {
     }
 
     private fun handleFloatingActionButton(root: View) {
-        val fab: FloatingActionButton = activity!!.findViewById(R.id.fab)
+        val fab: ElasticFloatingActionButton = activity!!.findViewById(R.id.fab)
         fab.setOnClickListener { view ->
             val scrollView: ScrollView = root.findViewById(R.id.scrollView)
             scrollView.fullScroll(ScrollView.FOCUS_UP)
