@@ -29,7 +29,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.messaging.FirebaseMessaging
-import com.donaldwu.lunchpickerandroid.server.Server
+import com.donaldwu.lunchpickerandroid.model.Model
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
                 if (token!!.isNotEmpty()) {
                     storeTokenInSharedPreferences(token)
 
-                    val response = Server.addTokenToServer(token, "")
+                    val response = Model.addTokenToServer(token, "")
                     Log.i("logger", "response = ${response}")
 
                     subscribeTopic()

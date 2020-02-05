@@ -1,4 +1,4 @@
-package com.donaldwu.lunchpickerandroid.activity
+package com.donaldwu.lunchpickerandroid.view.activity
 
 import android.content.Intent
 import android.net.Uri
@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
-import com.donaldwu.lunchpickerandroid.adapter.RestaurantDetailsPhotosAdapter
-import com.donaldwu.lunchpickerandroid.server.Server
+import com.donaldwu.lunchpickerandroid.view.adapter.RestaurantDetailsPhotosAdapter
+import com.donaldwu.lunchpickerandroid.model.Model
 import com.github.vivchar.viewpagerindicator.ViewPagerIndicator
 import org.json.JSONArray
 import org.json.JSONObject
@@ -43,7 +43,7 @@ class RestaurantDetailsActivity : AppCompatActivity() {
         val id = i.getStringExtra("id")
 
         if (id != null && id.isNotEmpty()) {
-            val response = Server.getRestaurantDetails(id)
+            val response = Model.getRestaurantDetails(id)
 
             if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
                 val responseJSONObject = JSONObject(response)

@@ -47,8 +47,10 @@
     <string name="github_logo">Github logo</string>
     <string name="donate">為lunch picker捐贈更好的功能和發展</string>
     <string name="donorbox">Donorbox</string>
+    <string name="buy_me_a_coffee">Buy me a coffee</string>
     <string name="stripe">Stripe</string>
     <string name="donate_button">捐贈</string>
+    <string name="buy_me_a_coffee_button">給我買杯咖啡</string>
     <string name="enter_amount">輸入金額</string>
     <string name="pay_now_button">付款</string>
 

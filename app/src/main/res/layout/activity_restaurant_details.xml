@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/backgroundColor"
-    tools:context=".activity.RestaurantDetailsActivity">
+    tools:context=".view.activity.RestaurantDetailsActivity">
 
     <LinearLayout
         android:orientation="vertical"

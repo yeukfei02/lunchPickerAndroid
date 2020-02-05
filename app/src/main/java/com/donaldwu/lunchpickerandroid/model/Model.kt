@@ -1,11 +1,11 @@
-package com.donaldwu.lunchpickerandroid.server
+package com.donaldwu.lunchpickerandroid.model
 
 import android.util.Log
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import org.json.JSONObject
 
-class Server {
+class Model {
     companion object {
         private const val rootUrl = "https://lunch-picker-api.herokuapp.com/api"
         private const val scheme = "https"

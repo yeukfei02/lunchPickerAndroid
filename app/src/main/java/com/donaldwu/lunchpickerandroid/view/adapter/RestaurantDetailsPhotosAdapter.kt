@@ -1,4 +1,4 @@
-package com.donaldwu.lunchpickerandroid.adapter
+package com.donaldwu.lunchpickerandroid.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View

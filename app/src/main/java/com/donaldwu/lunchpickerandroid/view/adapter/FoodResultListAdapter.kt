@@ -1,4 +1,4 @@
-package com.donaldwu.lunchpickerandroid.adapter
+package com.donaldwu.lunchpickerandroid.view.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -11,12 +11,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.donaldwu.lunchpickerandroid.R
-import com.donaldwu.lunchpickerandroid.activity.RestaurantDetailsActivity
+import com.donaldwu.lunchpickerandroid.view.activity.RestaurantDetailsActivity
 import com.google.android.material.snackbar.Snackbar
 import com.donaldwu.lunchpickerandroid.helper.Helper
 import kotlinx.android.synthetic.main.food_result_list_item.view.*
 import org.json.JSONArray
-import com.donaldwu.lunchpickerandroid.server.Server
+import com.donaldwu.lunchpickerandroid.model.Model
 import java.lang.Exception
 
 class FoodResultListAdapter(
@@ -109,7 +109,7 @@ class FoodResultListAdapter(
 
                 holder.itemView.favourites_image_view.setOnClickListener {
                     val ip = Helper.getIPAddress(true)
-                    val response = Server.addToFavourites(ip, item)
+                    val response = Model.addToFavourites(ip, item)
                     Log.i("logger", "response = ${response}")
 
                     if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
@@ -122,7 +122,7 @@ class FoodResultListAdapter(
 
                 holder.itemView.delete_favourites_button.setOnClickListener {
                     val favouritesItemId = item.getString("_id")
-                    val response = Server.deleteFavouritesById(favouritesItemId)
+                    val response = Model.deleteFavouritesById(favouritesItemId)
                     Log.i("logger", "response = ${response}")
 
                     if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
