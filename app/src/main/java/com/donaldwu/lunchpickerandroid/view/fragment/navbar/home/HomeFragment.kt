@@ -1,6 +1,6 @@
-package com.donaldwu.lunchpickerandroid.fragment.navbar.home
+package com.donaldwu.lunchpickerandroid.view.fragment.navbar.home
 
-import com.donaldwu.lunchpickerandroid.adapter.FoodResultListAdapter
+import com.donaldwu.lunchpickerandroid.view.adapter.FoodResultListAdapter
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -18,7 +18,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONArray
 import org.json.JSONObject
-import com.donaldwu.lunchpickerandroid.server.Server
+import com.donaldwu.lunchpickerandroid.model.Model
 import com.donaldwu.lunchpickerandroid.R
 import com.skydoves.elasticviews.ElasticButton
 import com.skydoves.elasticviews.ElasticFloatingActionButton
@@ -68,7 +68,7 @@ class HomeFragment : Fragment() {
     private fun getFoodCategories(root: View) {
         val foodCategorySet = getFoodCategoryFromSharedPreferences(root)
         if (foodCategorySet == null) {
-            val response = Server.getCategories()
+            val response = Model.getCategories()
             if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
                 val jsonObject = JSONObject(response)
                 val categories = jsonObject.getJSONArray("categories")
@@ -157,7 +157,7 @@ class HomeFragment : Fragment() {
 
     private fun findLocationByLatLong(root: View) {
         if (latitude != 0.0 && longitude != 0.0) {
-            val response = Server.findLocationByLatLong(latitude, longitude)
+            val response = Model.findLocationByLatLong(latitude, longitude)
             if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
                 val responseJSONObject = JSONObject(response)
                 val location = responseJSONObject.getJSONObject("location")
@@ -241,7 +241,7 @@ class HomeFragment : Fragment() {
         submitButton.setOnClickListener {
             if (radioButtonValue == "place") {
                 if (locationStr.isNotEmpty()) {
-                    val response = Server.findRestaurantsByLocation(selectedTerm, locationStr)
+                    val response = Model.findRestaurantsByLocation(selectedTerm, locationStr)
                     if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
                         val responseJSONObject = JSONObject(response)
                         val restaurants = responseJSONObject.getJSONObject("restaurants")
@@ -322,7 +322,7 @@ class HomeFragment : Fragment() {
                 }
             } else if (radioButtonValue == "currentLocation") {
                 if (latitude != 0.0 && longitude != 0.0) {
-                    val response = Server.findRestaurantsByLatLong(selectedTerm, latitude, longitude)
+                    val response = Model.findRestaurantsByLatLong(selectedTerm, latitude, longitude)
                     if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
                         val responseJSONObject = JSONObject(response)
                         val restaurants = responseJSONObject.getJSONObject("restaurants")

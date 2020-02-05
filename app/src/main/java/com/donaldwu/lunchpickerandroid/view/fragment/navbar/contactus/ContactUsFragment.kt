@@ -1,4 +1,4 @@
-package com.donaldwu.lunchpickerandroid.fragment.navbar.contactus
+package com.donaldwu.lunchpickerandroid.view.fragment.navbar.contactus
 
 import android.content.Intent
 import android.net.Uri
@@ -18,7 +18,7 @@ import com.stripe.android.Stripe
 import com.stripe.android.model.Token
 import com.stripe.android.view.CardInputWidget
 import org.json.JSONObject
-import com.donaldwu.lunchpickerandroid.server.Server
+import com.donaldwu.lunchpickerandroid.model.Model
 import com.skydoves.elasticviews.ElasticButton
 import java.util.*
 import kotlin.collections.ArrayList
@@ -203,7 +203,7 @@ class ContactUsFragment : Fragment() {
                     })
 
                     if (amountNum != 0.0 && currency.isNotEmpty() && token.isNotEmpty()) {
-                        val response = Server.creditCardPayment(amountNum, currency, token, cardObj)
+                        val response = Model.creditCardPayment(amountNum, currency, token, cardObj)
                         Log.i("logger", "response = ${response}")
                     }
                 } else {

@@ -8,31 +8,31 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.donaldwu.lunchpickerandroid.fragment.navbar.home.HomeFragment"
+        android:name="com.donaldwu.lunchpickerandroid.view.fragment.navbar.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_random_food"
-        android:name="com.donaldwu.lunchpickerandroid.fragment.navbar.randomfood.RandomFoodFragment"
+        android:name="com.donaldwu.lunchpickerandroid.view.fragment.navbar.randomfood.RandomFoodFragment"
         android:label="@string/menu_random_food"
         tools:layout="@layout/fragment_random_food" />
 
     <fragment
         android:id="@+id/nav_favourites"
-        android:name="com.donaldwu.lunchpickerandroid.fragment.navbar.favourites.FavouritesFragment"
+        android:name="com.donaldwu.lunchpickerandroid.view.fragment.navbar.favourites.FavouritesFragment"
         android:label="@string/menu_favourites"
         tools:layout="@layout/fragment_favourites" />
 
     <fragment
         android:id="@+id/nav_settings"
-        android:name="com.donaldwu.lunchpickerandroid.fragment.navbar.settings.SettingsFragment"
+        android:name="com.donaldwu.lunchpickerandroid.view.fragment.navbar.settings.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
 
     <fragment
         android:id="@+id/nav_contact_us"
-        android:name="com.donaldwu.lunchpickerandroid.fragment.navbar.contactus.ContactUsFragment"
+        android:name="com.donaldwu.lunchpickerandroid.view.fragment.navbar.contactus.ContactUsFragment"
         android:label="@string/menu_contact_us"
         tools:layout="@layout/fragment_contact_us" />
 </navigation>

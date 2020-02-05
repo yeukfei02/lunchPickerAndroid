@@ -1,6 +1,6 @@
-package com.donaldwu.lunchpickerandroid.fragment.navbar.favourites
+package com.donaldwu.lunchpickerandroid.view.fragment.navbar.favourites
 
-import com.donaldwu.lunchpickerandroid.adapter.FoodResultListAdapter
+import com.donaldwu.lunchpickerandroid.view.adapter.FoodResultListAdapter
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -19,7 +19,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.donaldwu.lunchpickerandroid.helper.Helper
 import org.json.JSONArray
 import org.json.JSONObject
-import com.donaldwu.lunchpickerandroid.server.Server
+import com.donaldwu.lunchpickerandroid.model.Model
 import com.skydoves.elasticviews.ElasticButton
 import com.skydoves.elasticviews.ElasticFloatingActionButton
 
@@ -45,7 +45,7 @@ class FavouritesFragment : Fragment() {
 
     private fun getFavourites(root: View) {
         val ip = Helper.getIPAddress(true)
-        val response = Server.getFavourites(ip)
+        val response = Model.getFavourites(ip)
         if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
             val responseJSONObject = JSONObject(response)
             val favouritesList = responseJSONObject.getJSONArray("favourites")
@@ -166,7 +166,7 @@ class FavouritesFragment : Fragment() {
     private fun handleDeleteAllFavourites(root: View) {
         val deleteAllFavouritesButton: ElasticButton = root.findViewById(R.id.delete_all_favourites_button)
         deleteAllFavouritesButton.setOnClickListener {
-            val response = Server.deleteAllFavourites()
+            val response = Model.deleteAllFavourites()
             Log.i("logger", "response = ${response}")
 
             if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {

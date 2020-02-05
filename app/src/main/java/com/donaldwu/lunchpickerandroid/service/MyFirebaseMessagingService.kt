@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import android.util.Log
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.donaldwu.lunchpickerandroid.server.Server
+import com.donaldwu.lunchpickerandroid.model.Model
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
@@ -17,7 +17,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         val currentToken = getCurrentTokenFromSharedPreferences()
 
-        val response = Server.addTokenToServer(currentToken!!, refreshedToken)
+        val response = Model.addTokenToServer(currentToken!!, refreshedToken)
         Log.i("logger", "response = ${response}")
     }
 

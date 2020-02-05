@@ -1,6 +1,6 @@
-package com.donaldwu.lunchpickerandroid.fragment.navbar.randomfood
+package com.donaldwu.lunchpickerandroid.view.fragment.navbar.randomfood
 
-import com.donaldwu.lunchpickerandroid.adapter.FoodResultListAdapter
+import com.donaldwu.lunchpickerandroid.view.adapter.FoodResultListAdapter
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -18,7 +18,7 @@ import com.donaldwu.lunchpickerandroid.R
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONArray
 import org.json.JSONObject
-import com.donaldwu.lunchpickerandroid.server.Server
+import com.donaldwu.lunchpickerandroid.model.Model
 import com.skydoves.elasticviews.ElasticButton
 import com.skydoves.elasticviews.ElasticFloatingActionButton
 
@@ -58,7 +58,7 @@ class RandomFoodFragment : Fragment() {
     private fun getFoodCategories(root: View) {
         val foodCategorySet = getFoodCategoryFromSharedPreferences(root)
         if (foodCategorySet == null) {
-            val response = Server.getCategories()
+            val response = Model.getCategories()
             if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
                 val jsonObject = JSONObject(response)
                 val categories = jsonObject.getJSONArray("categories")
@@ -146,7 +146,7 @@ class RandomFoodFragment : Fragment() {
     }
 
     private fun getRandomFood(root: View) {
-        val response = Server.findRestaurantsByLatLong(selectedTerm, latitude, longitude)
+        val response = Model.findRestaurantsByLatLong(selectedTerm, latitude, longitude)
         if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
             val responseJSONObject = JSONObject(response)
             val restaurants = responseJSONObject.getJSONObject("restaurants")

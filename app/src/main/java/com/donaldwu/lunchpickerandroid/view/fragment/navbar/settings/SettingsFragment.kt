@@ -1,4 +1,4 @@
-package com.donaldwu.lunchpickerandroid.fragment.navbar.settings
+package com.donaldwu.lunchpickerandroid.view.fragment.navbar.settings
 
 import android.content.Context
 import android.content.Intent
