@@ -88,22 +88,32 @@
                     android:layout_height="wrap_content" />
 
                 <RadioGroup
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <RadioButton
                         android:id="@+id/donorbox_radio_button"
                         android:buttonTint="@color/colorPrimary"
+                        android:layout_marginBottom="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/donorbox" />
 
                     <RadioButton
+                        android:id="@+id/buy_me_a_coffee_radio_button"
+                        android:checked="true"
+                        android:buttonTint="@color/colorPrimary"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/buy_me_a_coffee" />
+
+                    <RadioButton
                         android:id="@+id/stripe_radio_button"
                         android:checked="true"
                         android:buttonTint="@color/colorPrimary"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/stripe" />
@@ -123,6 +133,27 @@
                         android:layout_height="wrap_content"
                         android:background="@color/colorPrimary"
                         android:text="@string/donate_button"
+                        android:textColor="@android:color/white"
+                        android:layout_marginTop="10dp"
+                        app:button_cornerRadius="4dp"
+                        app:button_duration="250"
+                        app:button_scale="0.87" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/buy_me_a_coffee_linearLayout"
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.skydoves.elasticviews.ElasticButton
+                        android:id="@+id/buy_me_a_coffee_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/buy_me_a_coffee_button"
                         android:textColor="@android:color/white"
                         android:layout_marginTop="10dp"
                         app:button_cornerRadius="4dp"

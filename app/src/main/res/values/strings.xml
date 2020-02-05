@@ -46,8 +46,10 @@
     <string name="github_logo">Github logo</string>
     <string name="donate">Donate for lunch picker better features and development</string>
     <string name="donorbox">Donorbox</string>
+    <string name="buy_me_a_coffee">Buy me a coffee</string>
     <string name="stripe">Stripe</string>
     <string name="donate_button">Donate</string>
+    <string name="buy_me_a_coffee_button">Buy me a coffee</string>
     <string name="enter_amount">Enter amount</string>
     <string name="pay_now_button">Pay now</string>
 

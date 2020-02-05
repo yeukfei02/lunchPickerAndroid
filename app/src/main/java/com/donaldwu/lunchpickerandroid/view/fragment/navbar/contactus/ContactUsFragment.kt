@@ -52,9 +52,13 @@ class ContactUsFragment : Fragment() {
 
         handleDonorboxRadioButton(root)
 
+        handleBuyMeACoffeeRadioButton(root)
+
         handleStripeRadioButton(root)
 
         handleDonateButton(root)
+
+        handleBuyMeACoffeeButton(root)
 
         handleAmountChange(root)
 
@@ -92,6 +96,25 @@ class ContactUsFragment : Fragment() {
                 val donorboxLinearLayout: LinearLayout = root.findViewById(R.id.donorbox_linearLayout)
                 donorboxLinearLayout.visibility = View.VISIBLE
 
+                val buyMeACoffeeLinearLayout: LinearLayout = root.findViewById(R.id.buy_me_a_coffee_linearLayout)
+                buyMeACoffeeLinearLayout.visibility = View.GONE
+
+                val stripeLinearLayout: LinearLayout = root.findViewById(R.id.stripe_linearLayout)
+                stripeLinearLayout.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun handleBuyMeACoffeeRadioButton(root: View) {
+        val buyMeACoffeeRadioButton: RadioButton = root.findViewById(R.id.buy_me_a_coffee_radio_button)
+        buyMeACoffeeRadioButton.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                val donorboxLinearLayout: LinearLayout = root.findViewById(R.id.donorbox_linearLayout)
+                donorboxLinearLayout.visibility = View.GONE
+
+                val buyMeACoffeeLinearLayout: LinearLayout = root.findViewById(R.id.buy_me_a_coffee_linearLayout)
+                buyMeACoffeeLinearLayout.visibility = View.VISIBLE
+
                 val stripeLinearLayout: LinearLayout = root.findViewById(R.id.stripe_linearLayout)
                 stripeLinearLayout.visibility = View.GONE
             }
@@ -105,6 +128,9 @@ class ContactUsFragment : Fragment() {
                 val donorboxLinearLayout: LinearLayout = root.findViewById(R.id.donorbox_linearLayout)
                 donorboxLinearLayout.visibility = View.GONE
 
+                val buyMeACoffeeLinearLayout: LinearLayout = root.findViewById(R.id.buy_me_a_coffee_linearLayout)
+                buyMeACoffeeLinearLayout.visibility = View.GONE
+
                 val stripeLinearLayout: LinearLayout = root.findViewById(R.id.stripe_linearLayout)
                 stripeLinearLayout.visibility = View.VISIBLE
             }
@@ -116,6 +142,15 @@ class ContactUsFragment : Fragment() {
         donateButton.setOnClickListener {
             val i = Intent(Intent.ACTION_VIEW)
             i.data = Uri.parse("https://donorbox.org/donate-for-lunch-picker-better-features-and-development")
+            startActivity(i)
+        }
+    }
+
+    private fun handleBuyMeACoffeeButton(root: View) {
+        val buyMeACoffeeButton: ElasticButton = root.findViewById(R.id.buy_me_a_coffee_button)
+        buyMeACoffeeButton.setOnClickListener {
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse("https://www.buymeacoffee.com/yeukfei02")
             startActivity(i)
         }
     }
