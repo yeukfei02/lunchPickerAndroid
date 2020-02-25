@@ -56,11 +56,6 @@ class MainActivity : AppCompatActivity() {
         handleUrlClick()
     }
 
-    private fun setNetworkOnMainThread() {
-        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
-        StrictMode.setThreadPolicy(policy)
-    }
-
     private fun setLocale() {
         val language = getLanguageFromSharedPreferences()
 
@@ -76,6 +71,11 @@ class MainActivity : AppCompatActivity() {
     private fun getLanguageFromSharedPreferences(): String? {
         val prefs: SharedPreferences = getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE)
         return prefs.getString("language", "en")
+    }
+
+    private fun setNetworkOnMainThread() {
+        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(policy)
     }
 
     private fun getCurrentLocation() {
