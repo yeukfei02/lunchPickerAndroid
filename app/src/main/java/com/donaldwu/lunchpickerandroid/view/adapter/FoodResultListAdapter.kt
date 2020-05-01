@@ -110,7 +110,7 @@ class FoodResultListAdapter(
                 holder.itemView.favourites_image_view.setOnClickListener {
                     val ip = Helper.getIPAddress(true)
                     val response = Model.addToFavourites(ip, item)
-                    Log.i("logger", "response = ${response}")
+                    Log.i("logger", "response = $response")
 
                     if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
                         holder.itemView.favourites_image_view.setImageResource(R.drawable.favourites_added)
@@ -123,7 +123,7 @@ class FoodResultListAdapter(
                 holder.itemView.delete_favourites_button.setOnClickListener {
                     val favouritesItemId = item.getString("_id")
                     val response = Model.deleteFavouritesById(favouritesItemId)
-                    Log.i("logger", "response = ${response}")
+                    Log.i("logger", "response = $response")
 
                     if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
                         Snackbar.make(holder.itemView, "Delete favourites by id", Snackbar.LENGTH_SHORT).show()

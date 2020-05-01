@@ -90,8 +90,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     val latitude = location.latitude
                     val longitude = location.longitude
-                    Log.i("logger", "latitude = ${latitude}")
-                    Log.i("logger", "longitude = ${longitude}")
+                    Log.i("logger", "latitude = $latitude")
+                    Log.i("logger", "longitude = $longitude")
                     storeLatLongInSharedPreferences(latitude, longitude)
                 }
             }
@@ -104,13 +104,13 @@ class MainActivity : AppCompatActivity() {
         FirebaseInstanceId.getInstance().instanceId.addOnCompleteListener(OnCompleteListener { task ->
             if (task.isSuccessful) {
                 val token = task.result?.token
-                Log.i("logger", "token = ${token}")
+                Log.i("logger", "token = $token")
 
                 if (token!!.isNotEmpty()) {
                     storeTokenInSharedPreferences(token)
 
                     val response = Model.addTokenToServer(token, "")
-                    Log.i("logger", "response = ${response}")
+                    Log.i("logger", "response = $response")
 
                     subscribeTopic()
                 }
@@ -163,8 +163,8 @@ class MainActivity : AppCompatActivity() {
                     val location = locations[0]
                     val latitude = location.latitude
                     val longitude = location.longitude
-                    Log.i("logger", "latitude = ${latitude}")
-                    Log.i("logger", "longitude = ${longitude}")
+                    Log.i("logger", "latitude = $latitude")
+                    Log.i("logger", "longitude = $longitude")
                     storeLatLongInSharedPreferences(latitude, longitude)
                 }
             }
