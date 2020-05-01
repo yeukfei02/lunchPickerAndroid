@@ -239,7 +239,7 @@ class ContactUsFragment : Fragment() {
 
                     if (amountNum != 0.0 && currency.isNotEmpty() && token.isNotEmpty()) {
                         val response = Model.creditCardPayment(amountNum, currency, token, cardObj)
-                        Log.i("logger", "response = ${response}")
+                        Log.i("logger", "response = $response")
                     }
                 } else {
                     Snackbar.make(root, "Card is not a valid card", Snackbar.LENGTH_SHORT).show()

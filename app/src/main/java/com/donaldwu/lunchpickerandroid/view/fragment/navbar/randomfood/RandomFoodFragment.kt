@@ -323,7 +323,7 @@ class RandomFoodFragment : Fragment() {
     }
 
     private fun handleFloatingActionButton(root: View) {
-        val fab: ElasticFloatingActionButton = activity!!.findViewById(R.id.fab)
+        val fab: ElasticFloatingActionButton = requireActivity().findViewById(R.id.fab)
         fab.setOnClickListener { view ->
             val scrollView: ScrollView = root.findViewById(R.id.scrollView)
             scrollView.fullScroll(ScrollView.FOCUS_UP)

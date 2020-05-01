@@ -167,7 +167,7 @@ class FavouritesFragment : Fragment() {
         val deleteAllFavouritesButton: ElasticButton = root.findViewById(R.id.delete_all_favourites_button)
         deleteAllFavouritesButton.setOnClickListener {
             val response = Model.deleteAllFavourites()
-            Log.i("logger", "response = ${response}")
+            Log.i("logger", "response = $response")
 
             if (response != null && response.isNotEmpty() && !response.contains("<!DOCTYPE html>")) {
                 getFavourites(root)
@@ -188,7 +188,7 @@ class FavouritesFragment : Fragment() {
     }
 
     private fun handleFloatingActionButton(root: View) {
-        val fab: ElasticFloatingActionButton = activity!!.findViewById(R.id.fab)
+        val fab: ElasticFloatingActionButton = requireActivity().findViewById(R.id.fab)
         fab.setOnClickListener { view ->
             val scrollView: ScrollView = root.findViewById(R.id.scrollView)
             scrollView.fullScroll(ScrollView.FOCUS_UP)

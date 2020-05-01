@@ -18,7 +18,7 @@ class Model {
             val client = OkHttpClient()
 
             val url = getCategoriesUrl
-            Log.i("logger", "url = ${url}")
+            Log.i("logger", "url = $url")
 
             val request: Request = Request.Builder()
                 .header("Content-type", "application/json")
@@ -42,7 +42,7 @@ class Model {
             urlBuilder.addQueryParameter("latitude", latitude.toString())
             urlBuilder.addQueryParameter("longitude", longitude.toString())
             val url = urlBuilder.build().toString()
-            Log.i("logger", "url = ${url}")
+            Log.i("logger", "url = $url")
 
             val request: Request = Request.Builder()
                 .header("Content-type", "application/json")
@@ -66,7 +66,7 @@ class Model {
             urlBuilder.addQueryParameter("term", selectedTerm)
             urlBuilder.addQueryParameter("location", location)
             val url = urlBuilder.build().toString()
-            Log.i("logger", "url = ${url}")
+            Log.i("logger", "url = $url")
 
             val request: Request = Request.Builder()
                 .header("Content-type", "application/json")
@@ -91,7 +91,7 @@ class Model {
             urlBuilder.addQueryParameter("latitude", latitude.toString())
             urlBuilder.addQueryParameter("longitude", longitude.toString())
             val url = urlBuilder.build().toString()
-            Log.i("logger", "url = ${url}")
+            Log.i("logger", "url = $url")
 
             val request: Request = Request.Builder()
                 .header("Content-type", "application/json")
@@ -113,7 +113,7 @@ class Model {
             urlBuilder.addPathSegment("favourites")
             urlBuilder.addPathSegment("add-to-favourites")
             val url = urlBuilder.build().toString()
-            Log.i("logger", "url = ${url}")
+            Log.i("logger", "url = $url")
 
             val data = JSONObject()
             data.put("ip", ip)
@@ -146,7 +146,7 @@ class Model {
             urlBuilder.addPathSegment("get-favourites")
             urlBuilder.addQueryParameter("ip", ip)
             val url = urlBuilder.build().toString()
-            Log.i("logger", "url = ${url}")
+            Log.i("logger", "url = $url")
 
             val request: Request = Request.Builder()
                 .header("Content-type", "application/json")
@@ -162,7 +162,7 @@ class Model {
             val client = OkHttpClient()
 
             val url = deleteAllFavouritesUrl
-            Log.i("logger", "url = ${url}")
+            Log.i("logger", "url = $url")
 
             val request: Request = Request.Builder()
                 .header("Content-type", "application/json")
@@ -179,7 +179,7 @@ class Model {
             val client = OkHttpClient()
 
             val url = "%s/%s".format(deleteFavouritesByIdUrl, id)
-            Log.i("logger", "url = ${url}")
+            Log.i("logger", "url = $url")
 
             val request: Request = Request.Builder()
                 .header("Content-type", "application/json")
@@ -202,7 +202,7 @@ class Model {
             urlBuilder.addPathSegment("firebase")
             urlBuilder.addPathSegment("add-token-to-server")
             val url = urlBuilder.build().toString()
-            Log.i("logger", "url = ${url}")
+            Log.i("logger", "url = $url")
 
             val data = JSONObject()
             data.put("currentToken", currentToken)
@@ -234,7 +234,7 @@ class Model {
             urlBuilder.addPathSegment("firebase")
             urlBuilder.addPathSegment("subscribe-topic")
             val url = urlBuilder.build().toString()
-            Log.i("logger", "url = ${url}")
+            Log.i("logger", "url = $url")
 
             val data = JSONObject()
             data.put("currentTokenList", currentTokenList)
@@ -266,7 +266,7 @@ class Model {
             urlBuilder.addPathSegment("firebase")
             urlBuilder.addPathSegment("unsubscribe-topic")
             val url = urlBuilder.build().toString()
-            Log.i("logger", "url = ${url}")
+            Log.i("logger", "url = $url")
 
             val data = JSONObject()
             data.put("currentTokenList", currentTokenList)
@@ -298,7 +298,7 @@ class Model {
             urlBuilder.addPathSegment("stripe")
             urlBuilder.addPathSegment("credit-card-payment")
             val url = urlBuilder.build().toString()
-            Log.i("logger", "url = ${url}")
+            Log.i("logger", "url = $url")
 
             val data = JSONObject()
             data.put("amount", amount)
@@ -333,7 +333,7 @@ class Model {
             urlBuilder.addPathSegment("get-restaurant-details")
             urlBuilder.addPathSegment(id)
             val url = urlBuilder.build().toString()
-            Log.i("logger", "url = ${url}")
+            Log.i("logger", "url = $url")
 
             val request: Request = Request.Builder()
                 .header("Content-type", "application/json")

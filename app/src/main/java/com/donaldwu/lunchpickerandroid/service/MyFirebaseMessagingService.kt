@@ -18,7 +18,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val currentToken = getCurrentTokenFromSharedPreferences()
 
         val response = Model.addTokenToServer(currentToken!!, refreshedToken)
-        Log.i("logger", "response = ${response}")
+        Log.i("logger", "response = $response")
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
