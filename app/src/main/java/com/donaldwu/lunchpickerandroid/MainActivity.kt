@@ -241,7 +241,7 @@ class MainActivity : AppCompatActivity() {
         val url: TextView = navHeaderView.findViewById(R.id.url)
         url.setOnClickListener {
             val i = Intent(Intent.ACTION_VIEW)
-            i.data = Uri.parse("https://lunchpicker-2232b.firebaseapp.com")
+            i.data = Uri.parse("https://lunchpicker.me")
             startActivity(i)
         }
     }
