@@ -1,5 +1,7 @@
 # lunchPickerAndroid
 
+[![Discord](https://img.shields.io/discord/709281263470510101)](https://discord.gg/htT4RN6)
+
 If you’re a working software engineer, you’ve probably encountered with one of the toughest questions, where should I have lunch?
 
 Lunch picker is the tool you’ll turn to to answer this question.
