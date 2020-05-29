@@ -3,6 +3,7 @@ package com.donaldwu.lunchpickerandroid.model
 import android.util.Log
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 
 class Model {
@@ -119,10 +120,8 @@ class Model {
             data.put("ip", ip)
             data.put("item", item)
 
-            val body: RequestBody = RequestBody.create(
-                "application/json; charset=utf-8".toMediaType(),
-                data.toString()
-            )
+            val body: RequestBody = data.toString()
+                .toRequestBody("application/json; charset=utf-8".toMediaType())
 
             val request: Request = Request.Builder()
                 .header("Content-type", "application/json")
@@ -208,10 +207,8 @@ class Model {
             data.put("currentToken", currentToken)
             data.put("refreshedToken", refreshedToken)
 
-            val body: RequestBody = RequestBody.create(
-                "application/json; charset=utf-8".toMediaType(),
-                data.toString()
-            )
+            val body: RequestBody = data.toString()
+                .toRequestBody("application/json; charset=utf-8".toMediaType())
 
             val request: Request = Request.Builder()
                 .header("Content-type", "application/json")
@@ -240,10 +237,8 @@ class Model {
             data.put("currentTokenList", currentTokenList)
             data.put("topic", "all")
 
-            val body: RequestBody = RequestBody.create(
-                "application/json; charset=utf-8".toMediaType(),
-                data.toString()
-            )
+            val body: RequestBody = data.toString()
+                .toRequestBody("application/json; charset=utf-8".toMediaType())
 
             val request: Request = Request.Builder()
                 .header("Content-type", "application/json")
@@ -272,10 +267,8 @@ class Model {
             data.put("currentTokenList", currentTokenList)
             data.put("topic", "all")
 
-            val body: RequestBody = RequestBody.create(
-                "application/json; charset=utf-8".toMediaType(),
-                data.toString()
-            )
+            val body: RequestBody = data.toString()
+                .toRequestBody("application/json; charset=utf-8".toMediaType())
 
             val request: Request = Request.Builder()
                 .header("Content-type", "application/json")
@@ -306,10 +299,8 @@ class Model {
             data.put("token", token)
             data.put("card", card)
 
-            val body: RequestBody = RequestBody.create(
-                "application/json; charset=utf-8".toMediaType(),
-                data.toString()
-            )
+            val body: RequestBody = data.toString()
+                .toRequestBody("application/json; charset=utf-8".toMediaType())
 
             val request: Request = Request.Builder()
                 .header("Content-type", "application/json")

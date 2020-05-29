@@ -461,7 +461,7 @@ class HomeFragment : Fragment() {
 
     private fun handleSwipeRefreshLayout(root: View) {
         val mSwipeRefreshLayout: SwipeRefreshLayout = root.findViewById(R.id.swipe_refresh_layout)
-        mSwipeRefreshLayout.setColorScheme(R.color.colorPrimary, R.color.colorPrimaryDark, R.color.colorAccent)
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorPrimaryDark, R.color.colorAccent)
         mSwipeRefreshLayout.setOnRefreshListener {
             Handler().postDelayed({
                 val placeLinearLayout: LinearLayout = root.findViewById(R.id.place_linear_layout)
