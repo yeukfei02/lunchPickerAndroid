@@ -11,7 +11,9 @@ If you’re a working software engineer, you’ve probably encountered with one 
 
 Lunch picker is the tool you’ll turn to to answer this question.
 
-[<img src="https://github.com/yeukfei02/lunchPickerAndroid/blob/master/google-play-badge.png" width="30%" height="30%">](https://play.google.com/store/apps/details?id=com.donaldwu.lunchpickerandroid)
+<p align="center">
+  <a href="https://play.google.com/store/apps/details?id=com.donaldwu.lunchpickerandroid"><img src="https://github.com/yeukfei02/lunchPickerAndroid/blob/master/google-play-badge.png" width="30%" height="30%" alt=""></a>
+</p>
 
 ## Contributing
 
