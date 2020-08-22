@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.Switch
+import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
 import com.donaldwu.lunchpickerandroid.MainActivity
 import com.donaldwu.lunchpickerandroid.R
@@ -36,7 +36,7 @@ class SettingsFragment : Fragment() {
     }
 
     private fun handleSwitchSubscribeMessage(root: View) {
-        val switch: Switch = root.findViewById(R.id.switch_subscribe_message)
+        val switch: SwitchCompat = root.findViewById(R.id.switch_subscribe_message)
         switch.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 subscribeTopic(root)
