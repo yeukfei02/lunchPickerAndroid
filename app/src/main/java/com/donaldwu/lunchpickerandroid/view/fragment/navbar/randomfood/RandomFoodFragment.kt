@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.widget.SwitchCompat
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -262,8 +263,8 @@ class RandomFoodFragment : Fragment() {
     }
 
     private fun handleUseFoodCategorySwitch(root: View) {
-        val useRandomFoodCategrySwitch: Switch = root.findViewById(R.id.use_random_food_category)
-        useRandomFoodCategrySwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+        val useRandomFoodCategorySwitch: SwitchCompat = root.findViewById(R.id.use_random_food_category)
+        useRandomFoodCategorySwitch.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 switchCheckedStatus = true
                 getRandomFoodWithSwitchOn(root)
