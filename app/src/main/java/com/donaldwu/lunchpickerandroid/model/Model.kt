@@ -8,9 +8,9 @@ import org.json.JSONObject
 
 class Model {
     companion object {
-        private const val rootUrl = "https://lunch-picker-api.herokuapp.com/api"
+        private const val rootUrl = "https://www.lunch-picker-api.com/api"
         private const val scheme = "https"
-        private const val host = "lunch-picker-api.herokuapp.com"
+        private const val host = "www.lunch-picker-api.com"
         private val getCategoriesUrl = "%s/category/get-categories".format(rootUrl)
         private val deleteAllFavouritesUrl = "%s/favourites/delete-all-favourites".format(rootUrl)
         private val deleteFavouritesByIdUrl = "%s/favourites/delete-favourites".format(rootUrl)
